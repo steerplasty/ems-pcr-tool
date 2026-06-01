@@ -9,11 +9,13 @@
 <body>
 
 <header id="app-header">
-  <div class="header-logo">
-    &#9651; PCR Tool <span class="logo-badge">Beta</span>
-  </div>
-  <div class="header-actions">
-    <span id="section-indicator" style="font-size:12px;color:var(--text3);font-family:var(--mono);">Section 1 of 15</span>
+  <div class="header-logo">&#9651; PCR Tool <span class="logo-badge">Beta</span></div>
+  <div class="header-right">
+    <div class="format-toggle">
+      <button class="fmt-btn active" data-fmt="chart">Chart</button>
+      <button class="fmt-btn" data-fmt="soap">SOAP</button>
+      <button class="fmt-btn" data-fmt="chrono">Chronological</button>
+    </div>
   </div>
 </header>
 
@@ -24,1163 +26,1043 @@
 <!-- SIDEBAR -->
 <nav id="sidebar">
   <div class="sidebar-label">Sections</div>
-  <div class="nav-item" data-section="0"><span class="nav-num">01</span><span class="nav-dot"></span>Unit &amp; Crew</div>
-  <div class="nav-item" data-section="1"><span class="nav-num">02</span><span class="nav-dot"></span>Dispatch</div>
-  <div class="nav-item" data-section="2"><span class="nav-num">03</span><span class="nav-dot"></span>Response</div>
-  <div class="nav-item" data-section="3"><span class="nav-num">04</span><span class="nav-dot"></span>Scene</div>
-  <div class="nav-item" data-section="4"><span class="nav-num">05</span><span class="nav-dot"></span>Initial Impression</div>
-  <div class="nav-item" data-section="5"><span class="nav-num">06</span><span class="nav-dot"></span>ABCs</div>
-  <div class="nav-item" data-section="6"><span class="nav-num">07</span><span class="nav-dot"></span>Complaint</div>
-  <div class="nav-item" data-section="7"><span class="nav-num">08</span><span class="nav-dot"></span>History</div>
-  <div class="nav-item" data-section="8"><span class="nav-num">09</span><span class="nav-dot"></span>Head-to-Toe</div>
-  <div class="nav-item" data-section="9"><span class="nav-num">10</span><span class="nav-dot"></span>Scenario &amp; Procedures</div>
-  <div class="nav-item" data-section="10"><span class="nav-num">11</span><span class="nav-dot"></span>Vitals</div>
-  <div class="nav-item" data-section="11"><span class="nav-num">12</span><span class="nav-dot"></span>Medications</div>
-  <div class="nav-item" data-section="12"><span class="nav-num">13</span><span class="nav-dot"></span>Refusal</div>
-  <div class="nav-item" data-section="13"><span class="nav-num">14</span><span class="nav-dot"></span>Transportation</div>
-  <div class="nav-item" data-section="14"><span class="nav-num">15</span><span class="nav-dot"></span>Transfer of Care</div>
+  <div class="nav-item" data-section="sec-unit"><span class="nav-num">01</span><span class="nav-dot"></span>Unit &amp; Crew</div>
+  <div class="nav-item" data-section="sec-dispatch"><span class="nav-num">02</span><span class="nav-dot"></span>Dispatch</div>
+  <div class="nav-item" data-section="sec-times"><span class="nav-num">03</span><span class="nav-dot"></span>Times</div>
+  <div class="nav-item" data-section="sec-response"><span class="nav-num">04</span><span class="nav-dot"></span>Response</div>
+  <div class="nav-item" data-section="sec-scene"><span class="nav-num">05</span><span class="nav-dot"></span>Scene</div>
+  <div class="nav-item" data-section="sec-impression"><span class="nav-num">06</span><span class="nav-dot"></span>Initial Impression</div>
+  <div class="nav-item" data-section="sec-abcs"><span class="nav-num">07</span><span class="nav-dot"></span>ABCs</div>
+  <div class="nav-item" data-section="sec-complaint"><span class="nav-num">08</span><span class="nav-dot"></span>Complaint</div>
+  <div class="nav-item" data-section="sec-history"><span class="nav-num">09</span><span class="nav-dot"></span>History</div>
+  <div class="nav-item" data-section="sec-h2t"><span class="nav-num">10</span><span class="nav-dot"></span>Head-to-Toe</div>
+  <div class="nav-item" data-section="sec-scenario"><span class="nav-num">11</span><span class="nav-dot"></span>Scenario &amp; Procedures</div>
+  <div class="nav-item" data-section="sec-vitals"><span class="nav-num">12</span><span class="nav-dot"></span>Vitals</div>
+  <div class="nav-item" data-section="sec-meds"><span class="nav-num">13</span><span class="nav-dot"></span>Medications</div>
+  <div class="nav-item" data-section="sec-refusal"><span class="nav-num">14</span><span class="nav-dot"></span>Refusal</div>
+  <div class="nav-item" data-section="sec-transport"><span class="nav-num">15</span><span class="nav-dot"></span>Transportation</div>
+  <div class="nav-item" data-section="sec-transfer"><span class="nav-num">16</span><span class="nav-dot"></span>Transfer of Care</div>
 </nav>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN CONTENT — SINGLE SCROLL -->
 <main id="main-content">
 
-  <!-- 01 UNIT & CREW -->
-  <div class="section-panel" id="section-unit-crew">
-    <div class="section-heading">Unit &amp; Crew</div>
-    <div class="section-desc">Identify your unit and crew members before starting the report.</div>
-    <div class="field-group">
-      <div class="field-label">Unit Identifier</div>
-      <input class="text-input" type="text" placeholder="e.g. Medic 7" data-state="unitId">
+<!-- 01 UNIT & CREW -->
+<section class="section-block" id="sec-unit">
+  <div class="section-heading"><span class="section-num-badge">01</span> Unit &amp; Crew</div>
+  <div class="section-desc">Identify your unit and crew before starting.</div>
+  <div class="field-group">
+    <div class="field-label">Unit Identifier</div>
+    <input class="text-input" type="text" placeholder="e.g. Medic 7" data-state="unitId" style="width:200px;">
+  </div>
+  <div class="field-group">
+    <div class="field-label">Unit Type</div>
+    <div class="chip-group">
+      <div class="chip" data-key="unitType" data-val="ALS Transport">ALS Transport</div>
+      <div class="chip" data-key="unitType" data-val="BLS Transport">BLS Transport</div>
+      <div class="chip" data-key="unitType" data-val="ALS Non-Transport">ALS Non-Transport</div>
+      <div class="chip" data-key="unitType" data-val="BLS Non-Transport">BLS Non-Transport</div>
     </div>
-    <div class="field-group">
-      <div class="field-label">Unit Type</div>
+  </div>
+  <hr class="field-divider">
+  <div class="field-group">
+    <div class="field-label">Provider 1</div>
+    <div class="input-row">
+      <input class="text-input" type="text" placeholder="Full name" data-state="provider1Name" style="width:180px;">
+      <select class="sel" data-state="provider1Level">
+        <option value="">Level...</option>
+        <option>EMT</option><option>AEMT</option><option>Paramedic</option><option>First Responder</option>
+      </select>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Provider 2</div>
+    <div class="input-row">
+      <input class="text-input" type="text" placeholder="Full name" data-state="provider2Name" style="width:180px;">
+      <select class="sel" data-state="provider2Level">
+        <option value="">Level...</option>
+        <option>EMT</option><option>AEMT</option><option>Paramedic</option><option>First Responder</option>
+      </select>
+    </div>
+  </div>
+</section>
+
+<!-- 02 DISPATCH -->
+<section class="section-block" id="sec-dispatch">
+  <div class="section-heading"><span class="section-num-badge">02</span> Dispatch</div>
+  <div class="section-desc">Date, time, call type, and dispatch information.</div>
+  <div class="field-group">
+    <div class="field-label">Date of Call</div>
+    <div class="input-row">
+      <input class="date-input" type="date" id="input-date" data-state="callDate">
+      <button class="btn-today" id="btn-today">Today</button>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Call Type</div>
+    <div class="chip-group">
+      <div class="chip" data-key="callType" data-val="Medical">Medical</div>
+      <div class="chip" data-key="callType" data-val="Trauma">Trauma</div>
+      <div class="chip" data-key="callType" data-val="Alarm">Alarm</div>
+      <div class="chip" data-key="callType" data-val="Assist">Assist</div>
+    </div>
+  </div>
+  <div class="cond-block" id="cond-medical">
+    <div class="field-label">Medical — In Reference To</div>
+    <div class="chip-group">
+      <div class="chip" data-key="medicalRef" data-val="Sick Person">Sick Person</div>
+      <div class="chip" data-key="medicalRef" data-val="Weakness">Weakness</div>
+      <div class="chip" data-key="medicalRef" data-val="Breathing Problem">Breathing Problem</div>
+      <div class="chip" data-key="medicalRef" data-val="Cardiac Problem">Cardiac Problem</div>
+      <div class="chip" data-key="medicalRef" data-val="Syncope">Syncope</div>
+      <div class="chip" data-key="medicalRef" data-val="Altered Mental Status">Altered</div>
+      <div class="chip" data-key="medicalRef" data-val="Seizure">Seizure</div>
+      <div class="chip" data-key="medicalRef" data-val="Diabetic Problem">Diabetic Problem</div>
+      <div class="chip" data-key="medicalRef" data-val="Stroke">Stroke</div>
+      <div class="chip" data-key="medicalRef" data-val="Overdose/Poisoning">Overdose/Poisoning</div>
+      <div class="chip" data-key="medicalRef" data-val="Behavioral">Behavioral</div>
+      <div class="chip" data-key="medicalRef" data-val="Pain">Pain</div>
+      <div class="chip" data-key="medicalRef" data-val="Allergic Reaction">Allergic Reaction</div>
+      <div class="chip" data-key="medicalRef" data-val="Death">Death</div>
+      <div class="chip" data-key="medicalRef" data-val="Unresponsive">Unresponsive</div>
+    </div>
+  </div>
+  <div class="cond-block" id="cond-trauma">
+    <div class="field-label">Trauma — In Reference To</div>
+    <div class="chip-group">
+      <div class="chip" data-key="traumaRef" data-val="Fall">Fall</div>
+      <div class="chip" data-key="traumaRef" data-val="MVA">MVA</div>
+      <div class="chip" data-key="traumaRef" data-val="Assault">Assault</div>
+      <div class="chip" data-key="traumaRef" data-val="Shooting">Shooting</div>
+      <div class="chip" data-key="traumaRef" data-val="Stabbing">Stabbing</div>
+    </div>
+  </div>
+  <div class="cond-block" id="cond-alarm">
+    <div class="field-label">Alarm — In Reference To</div>
+    <div class="chip-group">
+      <div class="chip" data-key="alarmRef" data-val="Medical Alarm">Medical Alarm</div>
+      <div class="chip" data-key="alarmRef" data-val="Unknown Alarm">Unknown Alarm</div>
+    </div>
+  </div>
+  <div class="cond-block" id="cond-assist">
+    <div class="field-label">Assist — In Reference To</div>
+    <div class="chip-group">
+      <div class="chip" data-key="assistRef" data-val="Lift Assist">Lift Assist</div>
+      <div class="chip" data-key="assistRef" data-val="Good Intent Call">Good Intent Call</div>
+    </div>
+  </div>
+  <div class="field-group" style="margin-top:12px;">
+    <div class="field-label">Dispatch Call Notes</div>
+    <input class="text-input" type="text" placeholder="Notes from dispatch..." data-state="callNotes" style="width:100%;max-width:480px;">
+  </div>
+</section>
+
+<!-- 03 TIMES -->
+<section class="section-block" id="sec-times">
+  <div class="section-heading"><span class="section-num-badge">03</span> Times</div>
+  <div class="section-desc">Enter all call times here once. They will be available to reference in Vitals, Medications, and throughout the report.</div>
+  <div class="times-grid" id="times-grid"></div>
+</section>
+
+<!-- 04 RESPONSE -->
+<section class="section-block" id="sec-response">
+  <div class="section-heading"><span class="section-num-badge">04</span> Response</div>
+  <div class="section-desc">Response origin, type, delays, and unit disposition.</div>
+  <div class="field-group">
+    <div class="field-label">Response From</div>
+    <div class="chip-group">
+      <div class="chip" data-key="responseFrom" data-val="Station">Station</div>
+      <div class="chip" data-key="responseFrom" data-val="Zone">Zone</div>
+      <div class="chip" data-key="responseFrom" data-val="Out of Zone">Out of Zone</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Response Type</div>
+    <div class="chip-group">
+      <div class="chip" data-key="responseType" data-val="Emergent">Emergent</div>
+      <div class="chip" data-key="responseType" data-val="Non-Emergent">Non-Emergent</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Response Delays</div>
+    <div class="chip-group">
+      <div class="chip" data-key="responseDelays" data-val="None" data-mode="multi">None</div>
+      <div class="chip" data-key="responseDelays" data-val="Traffic" data-mode="multi">Traffic</div>
+      <div class="chip" data-key="responseDelays" data-val="Mechanical" data-mode="multi">Mechanical</div>
+      <div class="chip" data-key="responseDelays" data-val="Weather" data-mode="multi">Weather</div>
+      <div class="chip" data-key="responseDelays" data-val="Scene Safety" data-mode="multi">Scene Safety</div>
+      <div class="chip" data-key="responseDelays" data-val="Other" data-mode="multi">Other</div>
+    </div>
+  </div>
+  <hr class="field-divider">
+  <div class="field-group">
+    <div class="field-label">Disposition</div>
+    <div class="chip-group">
+      <div class="chip" data-key="disposition" data-val="First EMS Unit On Scene">First EMS Unit On Scene</div>
+      <div class="chip" data-key="disposition" data-val="Assisting Other Unit On Scene">Assisting Other Unit</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Law Enforcement</div>
+    <div class="chip-group">
+      <div class="chip" data-key="lawEnforcement" data-val="LE On Scene Prior">LE On Scene Prior</div>
+      <div class="chip" data-key="lawEnforcement" data-val="LE Requested">LE Requested</div>
+      <div class="chip" data-key="lawEnforcement" data-val="Standby for LE">Standby for LE</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Lead Unit PT Care</div>
+    <div class="chip-group">
+      <div class="chip" data-key="leadUnitCare" data-val="Yes — Lead Unit">Yes</div>
+      <div class="chip" data-key="leadUnitCare" data-val="No">No</div>
+      <div class="chip" data-key="leadUnitCare" data-val="Assisting Lead Unit">Assisting Lead Unit</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SCENE -->
+<section class="section-block" id="sec-scene">
+  <div class="section-heading"><span class="section-num-badge">05</span> Scene</div>
+  <div class="section-desc">Location type, people present, weather, and scene safety.</div>
+  <div class="field-group">
+    <div class="field-label">Location Type</div>
+    <div class="chip-group">
+      <div class="chip" data-key="locationType" data-val="Private Residence">Private Residence</div>
+      <div class="chip" data-key="locationType" data-val="Street/Roadway">Street/Roadway</div>
+      <div class="chip" data-key="locationType" data-val="ALF/Nursing Home">ALF/Nursing Home</div>
+      <div class="chip" data-key="locationType" data-val="Healthcare Facility">Healthcare Facility</div>
+      <div class="chip" data-key="locationType" data-val="School">School</div>
+      <div class="chip" data-key="locationType" data-val="Public Building">Public Building</div>
+      <div class="chip" data-key="locationType" data-val="Workplace">Workplace</div>
+      <div class="chip" data-key="locationType" data-val="Store">Store</div>
+      <div class="chip" data-key="locationType" data-val="Outside">Outside</div>
+      <div class="chip" data-key="locationType" data-val="Vehicle">Vehicle</div>
+      <div class="chip" data-key="locationType" data-val="Correctional Facility">Correctional Facility</div>
+      <div class="chip" data-key="locationType" data-val="Transportation Hub">Transportation Hub</div>
+      <div class="chip" data-key="locationType" data-val="Group Home">Group Home</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">People Present</div>
+    <div class="chip-group">
+      <div class="chip" data-key="peoplePresent" data-val="Family" data-mode="multi">Family</div>
+      <div class="chip" data-key="peoplePresent" data-val="Friends" data-mode="multi">Friends</div>
+      <div class="chip" data-key="peoplePresent" data-val="Co-Workers" data-mode="multi">Co-Workers</div>
+      <div class="chip" data-key="peoplePresent" data-val="Healthcare Professionals" data-mode="multi">Healthcare Professionals</div>
+      <div class="chip" data-key="peoplePresent" data-val="Other" data-mode="multi">Other</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Weather Factors</div>
+    <div class="chip-group">
+      <div class="chip" data-key="weatherFactors" data-val="Hot" data-mode="multi">Hot</div>
+      <div class="chip" data-key="weatherFactors" data-val="Cold" data-mode="multi">Cold</div>
+      <div class="chip" data-key="weatherFactors" data-val="Wet" data-mode="multi">Wet</div>
+      <div class="chip" data-key="weatherFactors" data-val="Storming" data-mode="multi">Storming</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Scene Safety</div>
+    <div class="chip-group">
+      <div class="chip" data-key="sceneSafety" data-val="Safe">Safe</div>
+      <div class="chip" data-key="sceneSafety" data-val="Unsafe">Unsafe</div>
+    </div>
+    <div class="cond-block" id="cond-unsafe">
+      <div class="field-label">Unsafe Reason</div>
       <div class="chip-group">
-        <div class="chip" data-key="unitType" data-val="ALS Transport">ALS Transport</div>
-        <div class="chip" data-key="unitType" data-val="BLS Transport">BLS Transport</div>
-        <div class="chip" data-key="unitType" data-val="ALS Non-Transport">ALS Non-Transport</div>
-        <div class="chip" data-key="unitType" data-val="BLS Non-Transport">BLS Non-Transport</div>
+        <div class="chip" data-key="unsafeReason" data-val="Based on Call Notes" data-mode="multi">Based on Call Notes</div>
+        <div class="chip" data-key="unsafeReason" data-val="Persons" data-mode="multi">Persons</div>
+        <div class="chip" data-key="unsafeReason" data-val="Environmental" data-mode="multi">Environmental</div>
+        <div class="chip" data-key="unsafeReason" data-val="Not Secure" data-mode="multi">Not Secure</div>
+        <div class="chip" data-key="unsafeReason" data-val="Animals" data-mode="multi">Animals</div>
+        <div class="chip" data-key="unsafeReason" data-val="Accessibility" data-mode="multi">Accessibility</div>
+        <div class="chip" data-key="unsafeReason" data-val="Weather" data-mode="multi">Weather</div>
       </div>
     </div>
-    <hr class="field-divider">
-    <div class="field-group">
-      <div class="field-label">Provider 1</div>
-      <div class="input-row">
-        <input class="text-input" type="text" placeholder="Full name" data-state="provider1Name">
-        <select class="select-input" data-state="provider1Level">
-          <option value="">Level...</option>
-          <option>EMT</option><option>AEMT</option><option>Paramedic</option><option>First Responder</option>
+  </div>
+</section>
+
+<!-- 06 INITIAL IMPRESSION -->
+<section class="section-block" id="sec-impression">
+  <div class="section-heading"><span class="section-num-badge">06</span> Initial Impression</div>
+  <div class="section-desc">Patient demographics, mental status, GCS, and general impression.</div>
+  <div class="field-group">
+    <div class="field-label">Patient Age</div>
+    <div class="input-row">
+      <input class="text-input" type="text" placeholder="Write-in age" data-state="ptAge" style="width:130px;">
+      <div class="chip-group">
+        <div class="chip" data-key="ptAge" data-val="Infant (0-1)">Infant (0–1)</div>
+        <div class="chip" data-key="ptAge" data-val="Child (2-12)">Child (2–12)</div>
+        <div class="chip" data-key="ptAge" data-val="Teen (13-17)">Teen (13–17)</div>
+        <div class="chip" data-key="ptAge" data-val="Adult (18-64)">Adult (18–64)</div>
+        <div class="chip" data-key="ptAge" data-val="Elderly (65+)">Elderly (65+)</div>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Patient Sex</div>
+    <div class="chip-group">
+      <div class="chip" data-key="ptSex" data-val="Male">Male</div>
+      <div class="chip" data-key="ptSex" data-val="Female">Female</div>
+      <div class="chip" data-key="ptSex" data-val="Other">Other</div>
+      <div class="chip" data-key="ptSex" data-val="Unknown">Unknown</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Patient Position Found</div>
+    <div class="chip-group">
+      <div class="chip" data-key="ptPosition" data-val="Seated">Seated</div>
+      <div class="chip" data-key="ptPosition" data-val="Supine">Supine</div>
+      <div class="chip" data-key="ptPosition" data-val="Prone">Prone</div>
+      <div class="chip" data-key="ptPosition" data-val="Standing/Walking">Standing/Walking</div>
+      <div class="chip" data-key="ptPosition" data-val="Tripod">Tripod</div>
+      <div class="chip" data-key="ptPosition" data-val="Other">Other</div>
+    </div>
+  </div>
+  <hr class="field-divider">
+  <div class="field-group">
+    <div class="field-label">AVPU</div>
+    <div class="chip-group">
+      <div class="chip" data-key="avpu" data-val="Alert">Alert</div>
+      <div class="chip" data-key="avpu" data-val="Verbal">Verbal</div>
+      <div class="chip" data-key="avpu" data-val="Pain">Pain</div>
+      <div class="chip" data-key="avpu" data-val="Unresponsive">Unresponsive</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">AAOx4</div>
+    <div class="chip-group">
+      <div class="chip" data-key="aao" data-val="Person" data-mode="multi">Person</div>
+      <div class="chip" data-key="aao" data-val="Place" data-mode="multi">Place</div>
+      <div class="chip" data-key="aao" data-val="Time" data-mode="multi">Time</div>
+      <div class="chip" data-key="aao" data-val="Event" data-mode="multi">Event</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">GCS</div>
+    <div class="gcs-row">
+      <div class="gcs-col">
+        <span style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;">Eye (1–4)</span>
+        <select class="sel" id="gcs-eye" style="width:140px;">
+          <option value="0">--</option>
+          <option value="1">1 — None</option><option value="2">2 — To pain</option>
+          <option value="3">3 — To voice</option><option value="4">4 — Spontaneous</option>
         </select>
       </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Provider 2</div>
-      <div class="input-row">
-        <input class="text-input" type="text" placeholder="Full name" data-state="provider2Name">
-        <select class="select-input" data-state="provider2Level">
-          <option value="">Level...</option>
-          <option>EMT</option><option>AEMT</option><option>Paramedic</option><option>First Responder</option>
+      <div class="gcs-col">
+        <span style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;">Verbal (1–5)</span>
+        <select class="sel" id="gcs-verbal" style="width:140px;">
+          <option value="0">--</option>
+          <option value="1">1 — None</option><option value="2">2 — Sounds</option>
+          <option value="3">3 — Words</option><option value="4">4 — Confused</option><option value="5">5 — Oriented</option>
         </select>
       </div>
-    </div>
-    <div class="section-nav">
-      <span></span>
-      <button class="btn-nav btn-next">Dispatch &rarr;</button>
+      <div class="gcs-col">
+        <span style="font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;">Motor (1–6)</span>
+        <select class="sel" id="gcs-motor" style="width:160px;">
+          <option value="0">--</option>
+          <option value="1">1 — None</option><option value="2">2 — Extension</option>
+          <option value="3">3 — Flexion</option><option value="4">4 — Withdrawal</option>
+          <option value="5">5 — Localizes</option><option value="6">6 — Obeys</option>
+        </select>
+      </div>
+      <div class="gcs-total-box">
+        <div class="gcs-total-num" id="gcs-total">--</div>
+        <div class="gcs-total-lbl">GCS Total</div>
+      </div>
     </div>
   </div>
+  <div class="field-group">
+    <div class="field-label">General Impression</div>
+    <input class="text-input" type="text" placeholder="Write-in..." data-state="generalImpression" style="width:100%;max-width:480px;">
+  </div>
+  <div class="field-group">
+    <div class="field-label">Disability / Needs</div>
+    <div class="chip-group">
+      <div class="chip" data-key="ptDisability" data-val="On O2" data-mode="multi">PT on O2</div>
+      <div class="chip" data-key="ptDisability" data-val="Walking Assistance Required" data-mode="multi">Walking Assistance</div>
+      <div class="chip" data-key="ptDisability" data-val="Unable to Walk" data-mode="multi">Cannot Walk</div>
+      <div class="chip" data-key="ptDisability" data-val="Mental Disabilities" data-mode="multi">Mental Disabilities</div>
+      <div class="chip" data-key="ptDisability" data-val="Blind" data-mode="multi">Blind</div>
+    </div>
+  </div>
+</section>
 
-  <!-- 02 DISPATCH -->
-  <div class="section-panel" id="section-dispatch">
-    <div class="section-heading">Dispatch</div>
-    <div class="section-desc">Date, time, call type, and dispatch information.</div>
-    <div class="field-group">
-      <div class="field-label">Date of Call</div>
-      <div class="input-row">
-        <input class="date-input" type="date" id="input-date" data-state="callDate">
-        <button class="btn-today" id="btn-today">Today</button>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Time of Call</div>
-      <input class="time-input" type="time" data-state="callTime">
-    </div>
-    <div class="field-group">
-      <div class="field-label">Call Type</div>
-      <div class="chip-group">
-        <div class="chip" data-key="callType" data-val="Medical">Medical</div>
-        <div class="chip" data-key="callType" data-val="Trauma">Trauma</div>
-        <div class="chip" data-key="callType" data-val="Alarm">Alarm</div>
-        <div class="chip" data-key="callType" data-val="Assist">Assist</div>
-      </div>
-    </div>
-    <div class="conditional-block" id="cond-medical">
-      <div class="field-label">Medical — In Reference To</div>
-      <div class="chip-group">
-        <div class="chip" data-key="medicalRef" data-val="Sick Person">Sick Person</div>
-        <div class="chip" data-key="medicalRef" data-val="Weakness">Weakness</div>
-        <div class="chip" data-key="medicalRef" data-val="Breathing Problem">Breathing Problem</div>
-        <div class="chip" data-key="medicalRef" data-val="Cardiac Problem">Cardiac Problem</div>
-        <div class="chip" data-key="medicalRef" data-val="Syncope">Syncope</div>
-        <div class="chip" data-key="medicalRef" data-val="Altered Mental Status">Altered</div>
-        <div class="chip" data-key="medicalRef" data-val="Seizure">Seizure</div>
-        <div class="chip" data-key="medicalRef" data-val="Diabetic Problem">Diabetic Problem</div>
-        <div class="chip" data-key="medicalRef" data-val="Stroke">Stroke</div>
-        <div class="chip" data-key="medicalRef" data-val="Overdose/Poisoning">Overdose/Poisoning</div>
-        <div class="chip" data-key="medicalRef" data-val="Behavioral">Behavioral</div>
-        <div class="chip" data-key="medicalRef" data-val="Pain">Pain</div>
-        <div class="chip" data-key="medicalRef" data-val="Allergic Reaction">Allergic Reaction</div>
-        <div class="chip" data-key="medicalRef" data-val="Death">Death</div>
-        <div class="chip" data-key="medicalRef" data-val="Unresponsive">Unresponsive</div>
-      </div>
-    </div>
-    <div class="conditional-block" id="cond-trauma">
-      <div class="field-label">Trauma — In Reference To</div>
-      <div class="chip-group">
-        <div class="chip" data-key="traumaRef" data-val="Fall">Fall</div>
-        <div class="chip" data-key="traumaRef" data-val="MVA">MVA</div>
-        <div class="chip" data-key="traumaRef" data-val="Assault">Assault</div>
-        <div class="chip" data-key="traumaRef" data-val="Shooting">Shooting</div>
-        <div class="chip" data-key="traumaRef" data-val="Stabbing">Stabbing</div>
-      </div>
-    </div>
-    <div class="conditional-block" id="cond-alarm">
-      <div class="field-label">Alarm — In Reference To</div>
-      <div class="chip-group">
-        <div class="chip" data-key="alarmRef" data-val="Medical Alarm">Medical Alarm</div>
-        <div class="chip" data-key="alarmRef" data-val="Unknown Alarm">Unknown Alarm</div>
-      </div>
-    </div>
-    <div class="conditional-block" id="cond-assist">
-      <div class="field-label">Assist — In Reference To</div>
-      <div class="chip-group">
-        <div class="chip" data-key="assistRef" data-val="Lift Assist">Lift Assist</div>
-        <div class="chip" data-key="assistRef" data-val="Good Intent Call">Good Intent Call</div>
-      </div>
-    </div>
-    <div class="field-group" style="margin-top:16px;">
-      <div class="field-label">Dispatch Call Notes</div>
-      <input class="text-input" type="text" placeholder="Notes from dispatch..." data-state="callNotes" style="max-width:100%;">
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Unit &amp; Crew</button>
-      <button class="btn-nav btn-next">Response &rarr;</button>
+<!-- 07 ABCs -->
+<section class="section-block" id="sec-abcs">
+  <div class="section-heading"><span class="section-num-badge">07</span> ABCs</div>
+  <div class="section-desc">Airway, breathing, and circulation assessment.</div>
+  <div class="field-group">
+    <div class="field-label">Airway</div>
+    <div class="chip-group">
+      <div class="chip" data-key="airway" data-val="Patent">Patent</div>
+      <div class="chip" data-key="airway" data-val="Obstructed">Obstructed</div>
+      <div class="chip" data-key="airway" data-val="Compromised">Compromised</div>
+      <div class="chip" data-key="airway" data-val="Not Breathing">Not Breathing</div>
+      <div class="chip" data-key="airway" data-val="Wheezing">Wheezing</div>
+      <div class="chip" data-key="airway" data-val="Snoring">Snoring</div>
     </div>
   </div>
+  <hr class="field-divider">
+  <div class="subsection-label">Breathing</div>
+  <div class="field-group">
+    <div class="field-label">Present</div>
+    <div class="chip-group">
+      <div class="chip" data-key="breathingPresent" data-val="Normal">Normal</div>
+      <div class="chip" data-key="breathingPresent" data-val="Not Breathing">Not Breathing</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Regularity</div>
+    <div class="chip-group">
+      <div class="chip" data-key="breathingRegularity" data-val="Regular">Regular</div>
+      <div class="chip" data-key="breathingRegularity" data-val="Irregular">Irregular</div>
+      <div class="chip" data-key="breathingRegularity" data-val="Agonal">Agonal</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Rate</div>
+    <div class="chip-group">
+      <div class="chip" data-key="breathingRate" data-val="Normal Rate">Normal</div>
+      <div class="chip" data-key="breathingRate" data-val="Rapid">Rapid</div>
+      <div class="chip" data-key="breathingRate" data-val="Slow">Slow</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Depth</div>
+    <div class="chip-group">
+      <div class="chip" data-key="breathingDepth" data-val="Normal Depth">Normal</div>
+      <div class="chip" data-key="breathingDepth" data-val="Shallow">Shallow</div>
+      <div class="chip" data-key="breathingDepth" data-val="Deep">Deep</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Effort</div>
+    <div class="chip-group">
+      <div class="chip" data-key="breathingEffort" data-val="Normal Effort">Normal</div>
+      <div class="chip" data-key="breathingEffort" data-val="With Effort">With Effort</div>
+      <div class="chip" data-key="breathingEffort" data-val="Accessory Muscles">Accessory Muscles</div>
+    </div>
+  </div>
+  <hr class="field-divider">
+  <div class="subsection-label">Circulation — Skin</div>
+  <div class="field-group">
+    <div class="field-label">Color</div>
+    <div class="chip-group">
+      <div class="chip" data-key="skinColor" data-val="Pink">Pink</div>
+      <div class="chip" data-key="skinColor" data-val="Pale">Pale</div>
+      <div class="chip" data-key="skinColor" data-val="Cyanotic">Cyanotic</div>
+      <div class="chip" data-key="skinColor" data-val="Jaundice">Jaundice</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Temperature</div>
+    <div class="chip-group">
+      <div class="chip" data-key="skinTemp" data-val="Warm">Warm</div>
+      <div class="chip" data-key="skinTemp" data-val="Hot">Hot</div>
+      <div class="chip" data-key="skinTemp" data-val="Cold">Cold</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Moisture</div>
+    <div class="chip-group">
+      <div class="chip" data-key="skinMoisture" data-val="Dry">Dry</div>
+      <div class="chip" data-key="skinMoisture" data-val="Diaphoretic">Diaphoretic</div>
+      <div class="chip" data-key="skinMoisture" data-val="Clammy">Clammy</div>
+      <div class="chip" data-key="skinMoisture" data-val="Wet">Wet</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Cap Refill</div>
+    <div class="chip-group">
+      <div class="chip" data-key="capRefill" data-val="Less than 2 seconds">&lt; 2 sec</div>
+      <div class="chip" data-key="capRefill" data-val="More than 2 seconds">&gt; 2 sec</div>
+    </div>
+  </div>
+  <hr class="field-divider">
+  <div class="subsection-label">Circulation — Pulse</div>
+  <div class="field-group">
+    <div class="field-label">Location</div>
+    <div class="chip-group">
+      <div class="chip" data-key="pulseLocation" data-val="Radial">Radial</div>
+      <div class="chip" data-key="pulseLocation" data-val="Carotid">Carotid</div>
+      <div class="chip" data-key="pulseLocation" data-val="Femoral">Femoral</div>
+      <div class="chip" data-key="pulseLocation" data-val="Brachial">Brachial</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Rate</div>
+    <div class="chip-group">
+      <div class="chip" data-key="pulseRate" data-val="Normal Rate">Normal</div>
+      <div class="chip" data-key="pulseRate" data-val="Fast">Fast</div>
+      <div class="chip" data-key="pulseRate" data-val="Slow">Slow</div>
+      <div class="chip" data-key="pulseRate" data-val="Pulseless">Pulseless</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Rhythm</div>
+    <div class="chip-group">
+      <div class="chip" data-key="pulseRhythm" data-val="Regular">Regular</div>
+      <div class="chip" data-key="pulseRhythm" data-val="Irregular">Irregular</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Strength</div>
+    <div class="chip-group">
+      <div class="chip" data-key="pulseStrength" data-val="Normal Strength">Normal</div>
+      <div class="chip" data-key="pulseStrength" data-val="Strong">Strong</div>
+      <div class="chip" data-key="pulseStrength" data-val="Weak">Weak</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Bleeding</div>
+    <div class="chip-group">
+      <div class="chip" data-key="bleeding" data-val="None">None</div>
+      <div class="chip" data-key="bleeding" data-val="Controlled">Controlled</div>
+      <div class="chip" data-key="bleeding" data-val="Uncontrolled">Uncontrolled</div>
+      <div class="chip" data-key="bleeding" data-val="Minor">Minor</div>
+      <div class="chip" data-key="bleeding" data-val="Severe">Severe</div>
+    </div>
+  </div>
+</section>
 
-  <!-- 03 RESPONSE -->
-  <div class="section-panel" id="section-response">
-    <div class="section-heading">Response</div>
-    <div class="section-desc">Times, origin, response type, delays, and unit disposition.</div>
-    <div class="field-group">
-      <div class="field-label">Response Times</div>
-      <div class="input-row">
-        <div>
-          <div class="field-label" style="margin-bottom:4px;">Dispatched</div>
-          <input class="time-input" type="time" data-state="timeDispatched">
-        </div>
-        <div>
-          <div class="field-label" style="margin-bottom:4px;">En Route</div>
-          <input class="time-input" type="time" data-state="timeEnRoute">
-        </div>
-        <div>
-          <div class="field-label" style="margin-bottom:4px;">On Scene</div>
-          <input class="time-input" type="time" data-state="timeOnScene">
-        </div>
-        <div>
-          <div class="field-label" style="margin-bottom:4px;">Patient Contact</div>
-          <input class="time-input" type="time" data-state="timePtContact">
-        </div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Response From</div>
-      <div class="chip-group">
-        <div class="chip" data-key="responseFrom" data-val="Station">Station</div>
-        <div class="chip" data-key="responseFrom" data-val="Zone">Zone</div>
-        <div class="chip" data-key="responseFrom" data-val="Out of Zone">Out of Zone</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Response Type</div>
-      <div class="chip-group">
-        <div class="chip" data-key="responseType" data-val="Emergent">Emergent</div>
-        <div class="chip" data-key="responseType" data-val="Non-Emergent">Non-Emergent</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Response Delays</div>
-      <div class="chip-group">
-        <div class="chip" data-key="responseDelays" data-val="None" data-mode="multi">None</div>
-        <div class="chip" data-key="responseDelays" data-val="Traffic" data-mode="multi">Traffic</div>
-        <div class="chip" data-key="responseDelays" data-val="Mechanical" data-mode="multi">Mechanical</div>
-        <div class="chip" data-key="responseDelays" data-val="Weather" data-mode="multi">Weather</div>
-        <div class="chip" data-key="responseDelays" data-val="Scene Safety" data-mode="multi">Scene Safety</div>
-        <div class="chip" data-key="responseDelays" data-val="Other" data-mode="multi">Other</div>
-      </div>
-    </div>
-    <hr class="field-divider">
-    <div class="field-group">
-      <div class="field-label">Unit Disposition</div>
-      <div class="chip-group">
-        <div class="chip" data-key="disposition" data-val="First EMS Unit On Scene">First EMS Unit On Scene</div>
-        <div class="chip" data-key="disposition" data-val="Assisting Other Unit">Assisting Other Unit On Scene</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Law Enforcement</div>
-      <div class="chip-group">
-        <div class="chip" data-key="lawEnforcement" data-val="LE On Scene Prior">LE On Scene Prior</div>
-        <div class="chip" data-key="lawEnforcement" data-val="LE Requested">LE Requested</div>
-        <div class="chip" data-key="lawEnforcement" data-val="Standby for LE">Standby for LE</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Lead Unit PT Care</div>
-      <div class="chip-group">
-        <div class="chip" data-key="leadUnitCare" data-val="Yes">Yes</div>
-        <div class="chip" data-key="leadUnitCare" data-val="No">No</div>
-        <div class="chip" data-key="leadUnitCare" data-val="Assisting Lead Unit">Assisting Lead Unit</div>
-      </div>
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Dispatch</button>
-      <button class="btn-nav btn-next">Scene &rarr;</button>
+<!-- 08 COMPLAINT -->
+<section class="section-block" id="sec-complaint">
+  <div class="section-heading"><span class="section-num-badge">08</span> Complaint</div>
+  <div class="section-desc">Chief complaint, onset, duration, pain scale, and symptoms. Click symptoms once to affirm (green), again to deny (red), again to clear.</div>
+  <div class="field-group">
+    <div class="field-label">Chief Complaint</div>
+    <div class="chip-group">
+      <div class="chip" data-key="chiefComplaint" data-val="Weakness">Weakness</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Sick">Sick</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Shortness of Breath">SOB</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Chest Pain">Chest Pain</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Altered Mental Status">Altered</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Seizure">Seizure</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Abdominal Pain">Abdominal Pain</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Syncope/Near Syncope">Syncope</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Diabetic Issue">Diabetic Issue</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Overdose/Poisoning">Overdose/Poisoning</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Nausea/Vomiting">Nausea/Vomiting</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Behavioral Emergency">Behavioral</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Headache">Headache</div>
+      <div class="chip" data-key="chiefComplaint" data-val="Acute Pain">Acute Pain</div>
     </div>
   </div>
+  <div class="field-group">
+    <div class="field-label">Complaint Area</div>
+    <div class="chip-group">
+      <div class="chip" data-key="complaintArea" data-val="General">General</div>
+      <div class="chip" data-key="complaintArea" data-val="Head">Head</div>
+      <div class="chip" data-key="complaintArea" data-val="Face">Face</div>
+      <div class="chip" data-key="complaintArea" data-val="Neck">Neck</div>
+      <div class="chip" data-key="complaintArea" data-val="Chest">Chest</div>
+      <div class="chip" data-key="complaintArea" data-val="Back">Back</div>
+      <div class="chip" data-key="complaintArea" data-val="Abdomen">Abdomen</div>
+      <div class="chip" data-key="complaintArea" data-val="Pelvic">Pelvic</div>
+      <div class="chip" data-key="complaintArea" data-val="Upper Extremities">Upper Extremities</div>
+      <div class="chip" data-key="complaintArea" data-val="Lower Extremities">Lower Extremities</div>
+      <div class="chip" data-key="complaintArea" data-val="Multi-System">Multi-System</div>
+      <div class="chip" data-key="complaintArea" data-val="Neurological">Neurological</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Onset</div>
+    <div class="chip-group">
+      <div class="chip" data-key="onset" data-val="Acute">Acute</div>
+      <div class="chip" data-key="onset" data-val="Chronic">Chronic</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Duration</div>
+    <div class="input-row">
+      <div class="chip" data-key="duration" data-val="At time of call">At time of call</div>
+      <input class="text-input" type="text" placeholder="Or write-in (e.g. 2 hours)" data-state="duration" style="width:220px;">
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Pain Scale — click to select, click again to deselect</div>
+    <div class="pain-scale">
+      <button class="pain-btn p0" data-val="0">0</button>
+      <button class="pain-btn p1" data-val="1">1</button>
+      <button class="pain-btn p2" data-val="2">2</button>
+      <button class="pain-btn p3" data-val="3">3</button>
+      <button class="pain-btn p4" data-val="4">4</button>
+      <button class="pain-btn p5" data-val="5">5</button>
+      <button class="pain-btn p6" data-val="6">6</button>
+      <button class="pain-btn p7" data-val="7">7</button>
+      <button class="pain-btn p8" data-val="8">8</button>
+      <button class="pain-btn p9" data-val="9">9</button>
+      <button class="pain-btn p10" data-val="10">10</button>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Symptoms — once = affirmed (green) · twice = denied (red) · third = clear</div>
+    <div class="chip-group">
+      <div class="chip" data-key="symptoms" data-val="Weakness" data-mode="symptom">Weakness</div>
+      <div class="chip" data-key="symptoms" data-val="Fatigue" data-mode="symptom">Fatigue</div>
+      <div class="chip" data-key="symptoms" data-val="Fever" data-mode="symptom">Fever</div>
+      <div class="chip" data-key="symptoms" data-val="Chills" data-mode="symptom">Chills</div>
+      <div class="chip" data-key="symptoms" data-val="Nausea" data-mode="symptom">Nausea</div>
+      <div class="chip" data-key="symptoms" data-val="Vomiting" data-mode="symptom">Vomiting</div>
+      <div class="chip" data-key="symptoms" data-val="Dizziness" data-mode="symptom">Dizziness</div>
+      <div class="chip" data-key="symptoms" data-val="Lightheadedness" data-mode="symptom">Lightheadedness</div>
+      <div class="chip" data-key="symptoms" data-val="Syncope" data-mode="symptom">Syncope</div>
+      <div class="chip" data-key="symptoms" data-val="Confusion" data-mode="symptom">Confusion</div>
+      <div class="chip" data-key="symptoms" data-val="Altered Mental Status" data-mode="symptom">Altered</div>
+      <div class="chip" data-key="symptoms" data-val="Anxiety" data-mode="symptom">Anxiety</div>
+      <div class="chip" data-key="symptoms" data-val="Dehydration" data-mode="symptom">Dehydration</div>
+      <div class="chip" data-key="symptoms" data-val="Diarrhea" data-mode="symptom">Diarrhea</div>
+      <div class="chip" data-key="symptoms" data-val="Loss of Appetite" data-mode="symptom">Loss of Appetite</div>
+      <div class="chip" data-key="symptoms" data-val="Trauma Related Pain" data-mode="symptom">Trauma Pain</div>
+      <div class="chip" data-key="symptoms" data-val="Chronic Pain" data-mode="symptom">Chronic Pain</div>
+      <div class="chip" data-key="symptoms" data-val="Seizures" data-mode="symptom">Seizures</div>
+      <div class="chip" data-key="symptoms" data-val="Rash" data-mode="symptom">Rash</div>
+      <div class="chip" data-key="symptoms" data-val="Shortness of Breath" data-mode="symptom">SOB</div>
+      <div class="chip" data-key="symptoms" data-val="Coughing" data-mode="symptom">Coughing</div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-label">Pain Location</div>
+    <div class="chip-group">
+      <div class="chip" data-key="painLocation" data-val="Head" data-mode="multi">Head</div>
+      <div class="chip" data-key="painLocation" data-val="Face" data-mode="multi">Face</div>
+      <div class="chip" data-key="painLocation" data-val="Neck" data-mode="multi">Neck</div>
+      <div class="chip" data-key="painLocation" data-val="Chest" data-mode="multi">Chest</div>
+      <div class="chip" data-key="painLocation" data-val="Back" data-mode="multi">Back</div>
+      <div class="chip" data-key="painLocation" data-val="Abdomen" data-mode="multi">Abdomen</div>
+      <div class="chip" data-key="painLocation" data-val="Pelvic" data-mode="multi">Pelvic</div>
+      <div class="chip" data-key="painLocation" data-val="Arms" data-mode="multi">Arms</div>
+      <div class="chip" data-key="painLocation" data-val="Legs" data-mode="multi">Legs</div>
+      <div class="chip" data-key="painLocation" data-val="Hands" data-mode="multi">Hands</div>
+      <div class="chip" data-key="painLocation" data-val="Feet" data-mode="multi">Feet</div>
+    </div>
+  </div>
+</section>
 
-  <!-- 04 SCENE -->
-  <div class="section-panel" id="section-scene">
-    <div class="section-heading">Scene</div>
-    <div class="section-desc">Location type, people present, weather, and scene safety.</div>
-    <div class="field-group">
-      <div class="field-label">Location Type</div>
-      <div class="chip-group">
-        <div class="chip" data-key="locationType" data-val="Private Residence">Private Residence</div>
-        <div class="chip" data-key="locationType" data-val="Street/Roadway">Street/Roadway</div>
-        <div class="chip" data-key="locationType" data-val="ALF/Nursing Home">ALF/Nursing Home</div>
-        <div class="chip" data-key="locationType" data-val="Healthcare Facility">Healthcare Facility</div>
-        <div class="chip" data-key="locationType" data-val="School">School</div>
-        <div class="chip" data-key="locationType" data-val="Public Building">Public Building</div>
-        <div class="chip" data-key="locationType" data-val="Workplace">Workplace</div>
-        <div class="chip" data-key="locationType" data-val="Store">Store</div>
-        <div class="chip" data-key="locationType" data-val="Outside">Outside</div>
-        <div class="chip" data-key="locationType" data-val="Vehicle">Vehicle</div>
-        <div class="chip" data-key="locationType" data-val="Correctional Facility">Correctional Facility</div>
-        <div class="chip" data-key="locationType" data-val="Transportation Hub">Transportation Hub</div>
-        <div class="chip" data-key="locationType" data-val="Group Home">Group Home</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">People Present <span>(select all that apply)</span></div>
-      <div class="chip-group">
-        <div class="chip" data-key="peoplePresent" data-val="Family" data-mode="multi">Family</div>
-        <div class="chip" data-key="peoplePresent" data-val="Friends" data-mode="multi">Friends</div>
-        <div class="chip" data-key="peoplePresent" data-val="Co-Workers" data-mode="multi">Co-Workers</div>
-        <div class="chip" data-key="peoplePresent" data-val="Healthcare Professionals" data-mode="multi">Healthcare Professionals</div>
-        <div class="chip" data-key="peoplePresent" data-val="Other" data-mode="multi">Other</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Weather Factors <span>(select all that apply)</span></div>
-      <div class="chip-group">
-        <div class="chip" data-key="weatherFactors" data-val="Hot" data-mode="multi">Hot</div>
-        <div class="chip" data-key="weatherFactors" data-val="Cold" data-mode="multi">Cold</div>
-        <div class="chip" data-key="weatherFactors" data-val="Wet" data-mode="multi">Wet</div>
-        <div class="chip" data-key="weatherFactors" data-val="Storming" data-mode="multi">Storming</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Scene Safety</div>
-      <div class="chip-group">
-        <div class="chip" data-key="sceneSafety" data-val="Safe">Safe</div>
-        <div class="chip" data-key="sceneSafety" data-val="Unsafe">Unsafe</div>
-      </div>
-      <div class="conditional-block" id="cond-unsafe">
-        <div class="field-label">Unsafe — Reason <span>(select all that apply)</span></div>
-        <div class="chip-group">
-          <div class="chip" data-key="unsafeReason" data-val="Based on Call Notes" data-mode="multi">Based on Call Notes</div>
-          <div class="chip" data-key="unsafeReason" data-val="Persons" data-mode="multi">Persons</div>
-          <div class="chip" data-key="unsafeReason" data-val="Environmental" data-mode="multi">Environmental</div>
-          <div class="chip" data-key="unsafeReason" data-val="Not Secure" data-mode="multi">Not Secure</div>
-          <div class="chip" data-key="unsafeReason" data-val="Animals" data-mode="multi">Animals</div>
-          <div class="chip" data-key="unsafeReason" data-val="Accessibility" data-mode="multi">Accessibility</div>
-          <div class="chip" data-key="unsafeReason" data-val="Weather" data-mode="multi">Weather</div>
-        </div>
-      </div>
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Response</button>
-      <button class="btn-nav btn-next">Initial Impression &rarr;</button>
+<!-- 09 HISTORY -->
+<section class="section-block" id="sec-history">
+  <div class="section-heading"><span class="section-num-badge">09</span> History</div>
+  <div class="section-desc">Past medical history, medications by category, allergies, and last oral intake.</div>
+  <div class="field-group">
+    <div class="field-label">Medical History</div>
+    <div class="chip-group">
+      <div class="chip" data-key="pmh" data-val="Hypertension" data-mode="multi">Hypertension</div>
+      <div class="chip" data-key="pmh" data-val="Diabetes Type I" data-mode="multi">Diabetes I</div>
+      <div class="chip" data-key="pmh" data-val="Diabetes Type II" data-mode="multi">Diabetes II</div>
+      <div class="chip" data-key="pmh" data-val="Cardiac Disease" data-mode="multi">Cardiac Disease</div>
+      <div class="chip" data-key="pmh" data-val="History of MI" data-mode="multi">Heart Attack</div>
+      <div class="chip" data-key="pmh" data-val="CHF" data-mode="multi">CHF</div>
+      <div class="chip" data-key="pmh" data-val="COPD" data-mode="multi">COPD</div>
+      <div class="chip" data-key="pmh" data-val="Asthma" data-mode="multi">Asthma</div>
+      <div class="chip" data-key="pmh" data-val="CVA/Stroke" data-mode="multi">Stroke</div>
+      <div class="chip" data-key="pmh" data-val="Seizure Disorder" data-mode="multi">Seizure Disorder</div>
+      <div class="chip" data-key="pmh" data-val="Dementia/Alzheimers" data-mode="multi">Dementia/Alzheimers</div>
+      <div class="chip" data-key="pmh" data-val="Depression/Anxiety" data-mode="multi">Depression/Anxiety</div>
+      <div class="chip" data-key="pmh" data-val="Substance Abuse" data-mode="multi">Substance Abuse</div>
+      <div class="chip" data-key="pmh" data-val="Kidney Disease" data-mode="multi">Kidney Disease</div>
+      <div class="chip" data-key="pmh" data-val="Cancer" data-mode="multi">Cancer</div>
+      <div class="chip" data-key="pmh" data-val="Cancer in Remission" data-mode="multi">Cancer Remission</div>
+      <div class="chip" data-key="pmh" data-val="A-Fib" data-mode="multi">A-Fib</div>
+      <div class="chip" data-key="pmh" data-val="Immunocompromised" data-mode="multi">Immunocompromised</div>
     </div>
   </div>
+  <hr class="field-divider">
+  <div class="field-group"><div class="field-label">General Medications</div><div class="chip-group">
+    <div class="chip" data-key="generalMeds" data-val="Blood Pressure Medication" data-mode="multi">Blood Pressure</div>
+    <div class="chip" data-key="generalMeds" data-val="Cholesterol Medication" data-mode="multi">Cholesterol</div>
+    <div class="chip" data-key="generalMeds" data-val="Diabetes Medication" data-mode="multi">Diabetes</div>
+    <div class="chip" data-key="generalMeds" data-val="Asthma Medication" data-mode="multi">Asthma</div>
+    <div class="chip" data-key="generalMeds" data-val="COPD Medication" data-mode="multi">COPD</div>
+    <div class="chip" data-key="generalMeds" data-val="Thyroid Medication" data-mode="multi">Thyroid</div>
+    <div class="chip" data-key="generalMeds" data-val="Anxiety Medication" data-mode="multi">Anxiety</div>
+    <div class="chip" data-key="generalMeds" data-val="Depression Medication" data-mode="multi">Depression</div>
+    <div class="chip" data-key="generalMeds" data-val="Sleep Medication" data-mode="multi">Sleep</div>
+    <div class="chip" data-key="generalMeds" data-val="Seizure Medication" data-mode="multi">Seizure</div>
+    <div class="chip" data-key="generalMeds" data-val="Pain Medication" data-mode="multi">Pain</div>
+    <div class="chip" data-key="generalMeds" data-val="Blood Thinner" data-mode="multi">Blood Thinner</div>
+    <div class="chip" data-key="generalMeds" data-val="Diuretic" data-mode="multi">Diuretic</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Cardiac Medications</div><div class="chip-group">
+    <div class="chip" data-key="cardiacMeds" data-val="Lisinopril" data-mode="multi">Lisinopril</div>
+    <div class="chip" data-key="cardiacMeds" data-val="Metoprolol" data-mode="multi">Metoprolol</div>
+    <div class="chip" data-key="cardiacMeds" data-val="Amlodipine" data-mode="multi">Amlodipine</div>
+    <div class="chip" data-key="cardiacMeds" data-val="Losartan" data-mode="multi">Losartan</div>
+    <div class="chip" data-key="cardiacMeds" data-val="Atenolol" data-mode="multi">Atenolol</div>
+    <div class="chip" data-key="cardiacMeds" data-val="Furosemide" data-mode="multi">Furosemide</div>
+    <div class="chip" data-key="cardiacMeds" data-val="Nitroglycerin" data-mode="multi">Nitro</div>
+    <div class="chip" data-key="cardiacMeds" data-val="Atorvastatin" data-mode="multi">Atorvastatin</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Diabetic Medications</div><div class="chip-group">
+    <div class="chip" data-key="diabeticMeds" data-val="Metformin" data-mode="multi">Metformin</div>
+    <div class="chip" data-key="diabeticMeds" data-val="Insulin" data-mode="multi">Insulin</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Respiratory Medications</div><div class="chip-group">
+    <div class="chip" data-key="respMeds" data-val="Albuterol" data-mode="multi">Albuterol</div>
+    <div class="chip" data-key="respMeds" data-val="Montelukast" data-mode="multi">Montelukast</div>
+    <div class="chip" data-key="respMeds" data-val="Tiotropium" data-mode="multi">Tiotropium</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Neuro Medications</div><div class="chip-group">
+    <div class="chip" data-key="neuroMeds" data-val="Levothyroxine" data-mode="multi">Levothyroxine</div>
+    <div class="chip" data-key="neuroMeds" data-val="Gabapentin" data-mode="multi">Gabapentin</div>
+    <div class="chip" data-key="neuroMeds" data-val="Sertraline" data-mode="multi">Sertraline</div>
+    <div class="chip" data-key="neuroMeds" data-val="Trazodone" data-mode="multi">Trazodone</div>
+    <div class="chip" data-key="neuroMeds" data-val="Lorazepam" data-mode="multi">Lorazepam</div>
+    <div class="chip" data-key="neuroMeds" data-val="Diazepam" data-mode="multi">Diazepam</div>
+    <div class="chip" data-key="neuroMeds" data-val="Phenytoin" data-mode="multi">Phenytoin</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Pain Medications</div><div class="chip-group">
+    <div class="chip" data-key="painMeds" data-val="Acetaminophen" data-mode="multi">Acetaminophen</div>
+    <div class="chip" data-key="painMeds" data-val="Ibuprofen" data-mode="multi">Ibuprofen</div>
+    <div class="chip" data-key="painMeds" data-val="Hydrocodone" data-mode="multi">Hydrocodone</div>
+    <div class="chip" data-key="painMeds" data-val="Oxycodone" data-mode="multi">Oxycodone</div>
+    <div class="chip" data-key="painMeds" data-val="Morphine" data-mode="multi">Morphine</div>
+    <div class="chip" data-key="painMeds" data-val="Fentanyl" data-mode="multi">Fentanyl</div>
+    <div class="chip" data-key="painMeds" data-val="Hydromorphone" data-mode="multi">Hydromorphone</div>
+  </div></div>
+  <hr class="field-divider">
+  <div class="field-group"><div class="field-label">Allergies</div><div class="chip-group">
+    <div class="chip" data-key="allergies" data-val="NKDA" data-mode="multi">NKDA</div>
+    <div class="chip" data-key="allergies" data-val="Penicillin" data-mode="multi">Penicillin</div>
+    <div class="chip" data-key="allergies" data-val="Sulfa" data-mode="multi">Sulfa</div>
+    <div class="chip" data-key="allergies" data-val="Aspirin" data-mode="multi">Aspirin</div>
+    <div class="chip" data-key="allergies" data-val="NSAIDs" data-mode="multi">NSAIDs</div>
+    <div class="chip" data-key="allergies" data-val="Codeine" data-mode="multi">Codeine</div>
+    <div class="chip" data-key="allergies" data-val="Opioids" data-mode="multi">Opioids</div>
+  </div></div>
+  <div class="field-group">
+    <div class="field-label">Last Oral Intake</div>
+    <input class="text-input" type="text" placeholder="e.g. 2 hours ago, breakfast" data-state="lastOralIntake" style="width:280px;">
+  </div>
+</section>
 
-  <!-- 05 INITIAL IMPRESSION -->
-  <div class="section-panel" id="section-patient-impression">
-    <div class="section-heading">Initial Impression</div>
-    <div class="section-desc">Patient demographics, mental status, and general impression.</div>
-    <div class="field-group">
-      <div class="field-label">Patient Age</div>
-      <div class="input-row">
-        <input class="text-input" type="text" placeholder="Age (write-in)" data-state="ptAge" style="max-width:140px;">
-        <div class="chip-group">
-          <div class="chip" data-key="ptAge" data-val="Infant (0-1)">Infant (0–1)</div>
-          <div class="chip" data-key="ptAge" data-val="Child (2-12)">Child (2–12)</div>
-          <div class="chip" data-key="ptAge" data-val="Teen (13-17)">Teen (13–17)</div>
-          <div class="chip" data-key="ptAge" data-val="Adult (18-64)">Adult (18–64)</div>
-          <div class="chip" data-key="ptAge" data-val="Elderly (65+)">Elderly (65+)</div>
-        </div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Patient Sex</div>
-      <div class="chip-group">
-        <div class="chip" data-key="ptSex" data-val="Male">Male</div>
-        <div class="chip" data-key="ptSex" data-val="Female">Female</div>
-        <div class="chip" data-key="ptSex" data-val="Other">Other</div>
-        <div class="chip" data-key="ptSex" data-val="Unknown">Unknown</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Patient Position Found</div>
-      <div class="chip-group">
-        <div class="chip" data-key="ptPosition" data-val="Seated">Seated</div>
-        <div class="chip" data-key="ptPosition" data-val="Supine">Supine</div>
-        <div class="chip" data-key="ptPosition" data-val="Prone">Prone</div>
-        <div class="chip" data-key="ptPosition" data-val="Standing/Walking">Standing/Walking</div>
-        <div class="chip" data-key="ptPosition" data-val="Tripod">Tripod</div>
-        <div class="chip" data-key="ptPosition" data-val="Other">Other</div>
-      </div>
-    </div>
-    <hr class="field-divider">
-    <div class="field-group">
-      <div class="field-label">AVPU</div>
-      <div class="chip-group">
-        <div class="chip" data-key="avpu" data-val="Alert">Alert</div>
-        <div class="chip" data-key="avpu" data-val="Verbal">Verbal</div>
-        <div class="chip" data-key="avpu" data-val="Pain">Pain</div>
-        <div class="chip" data-key="avpu" data-val="Unresponsive">Unresponsive</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">AAOx4 <span>(select all that apply)</span></div>
-      <div class="chip-group">
-        <div class="chip" data-key="aao" data-val="Person" data-mode="multi">Person</div>
-        <div class="chip" data-key="aao" data-val="Place" data-mode="multi">Place</div>
-        <div class="chip" data-key="aao" data-val="Time" data-mode="multi">Time</div>
-        <div class="chip" data-key="aao" data-val="Event" data-mode="multi">Event</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">GCS — Glasgow Coma Scale</div>
-      <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;">
-        <div>
-          <div class="field-label" style="margin-bottom:4px;">Eye (1–4)</div>
-          <select class="select-input" id="gcs-eye" style="max-width:120px;">
-            <option value="0">--</option>
-            <option value="1">1 — None</option>
-            <option value="2">2 — To pain</option>
-            <option value="3">3 — To voice</option>
-            <option value="4">4 — Spontaneous</option>
-          </select>
-        </div>
-        <div>
-          <div class="field-label" style="margin-bottom:4px;">Verbal (1–5)</div>
-          <select class="select-input" id="gcs-verbal" style="max-width:140px;">
-            <option value="0">--</option>
-            <option value="1">1 — None</option>
-            <option value="2">2 — Sounds</option>
-            <option value="3">3 — Words</option>
-            <option value="4">4 — Confused</option>
-            <option value="5">5 — Oriented</option>
-          </select>
-        </div>
-        <div>
-          <div class="field-label" style="margin-bottom:4px;">Motor (1–6)</div>
-          <select class="select-input" id="gcs-motor" style="max-width:160px;">
-            <option value="0">--</option>
-            <option value="1">1 — None</option>
-            <option value="2">2 — Extension</option>
-            <option value="3">3 — Flexion</option>
-            <option value="4">4 — Withdrawal</option>
-            <option value="5">5 — Localizes</option>
-            <option value="6">6 — Obeys</option>
-          </select>
-        </div>
-        <div style="text-align:center;">
-          <div class="field-label" style="margin-bottom:4px;">Total</div>
-          <div id="gcs-total" style="font-size:28px;font-weight:600;font-family:var(--mono);color:var(--accent2);">--</div>
-        </div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">General Impression</div>
-      <input class="text-input" type="text" placeholder="Write-in impression..." data-state="generalImpression" style="max-width:100%;">
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Scene</button>
-      <button class="btn-nav btn-next">ABCs &rarr;</button>
-    </div>
-  </div>
+<!-- 10 HEAD TO TOE -->
+<section class="section-block" id="sec-h2t">
+  <div class="section-heading"><span class="section-num-badge">10</span> Head-to-Toe Exam</div>
+  <div class="section-desc">Full body assessment by region. Select all findings.</div>
+  <div class="field-group"><div class="field-label">General</div><div class="chip-group">
+    <div class="chip" data-key="examGeneral" data-val="Confused" data-mode="multi">Confused</div>
+    <div class="chip" data-key="examGeneral" data-val="Combative" data-mode="multi">Combative</div>
+    <div class="chip" data-key="examGeneral" data-val="Lethargic" data-mode="multi">Lethargic</div>
+    <div class="chip" data-key="examGeneral" data-val="Unresponsive" data-mode="multi">Unresponsive</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Skin</div><div class="chip-group">
+    <div class="chip" data-key="examSkin" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examSkin" data-val="Hot" data-mode="multi">Hot</div>
+    <div class="chip" data-key="examSkin" data-val="Cold" data-mode="multi">Cold</div>
+    <div class="chip" data-key="examSkin" data-val="Diaphoretic" data-mode="multi">Diaphoretic</div>
+    <div class="chip" data-key="examSkin" data-val="Pale" data-mode="multi">Pale</div>
+    <div class="chip" data-key="examSkin" data-val="Cyanotic" data-mode="multi">Cyanotic</div>
+    <div class="chip" data-key="examSkin" data-val="Jaundiced" data-mode="multi">Jaundiced</div>
+    <div class="chip" data-key="examSkin" data-val="Flushed" data-mode="multi">Flushed</div>
+    <div class="chip" data-key="examSkin" data-val="Rash" data-mode="multi">Rash</div>
+    <div class="chip" data-key="examSkin" data-val="Hives" data-mode="multi">Hives</div>
+    <div class="chip" data-key="examSkin" data-val="Tenting" data-mode="multi">Tenting</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Head</div><div class="chip-group">
+    <div class="chip" data-key="examHead" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examHead" data-val="Trauma" data-mode="multi">Trauma</div>
+    <div class="chip" data-key="examHead" data-val="Laceration" data-mode="multi">Laceration</div>
+    <div class="chip" data-key="examHead" data-val="Contusion" data-mode="multi">Contusion</div>
+    <div class="chip" data-key="examHead" data-val="Bleeding" data-mode="multi">Bleeding</div>
+    <div class="chip" data-key="examHead" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Eyes</div><div class="chip-group">
+    <div class="chip" data-key="examEyes" data-val="PERRL" data-mode="multi">PERRL</div>
+    <div class="chip" data-key="examEyes" data-val="Unequal Pupils" data-mode="multi">Unequal Pupils</div>
+    <div class="chip" data-key="examEyes" data-val="Non-Reactive" data-mode="multi">Non-Reactive</div>
+    <div class="chip" data-key="examEyes" data-val="Pinpoint" data-mode="multi">Pinpoint</div>
+    <div class="chip" data-key="examEyes" data-val="Dilated" data-mode="multi">Dilated</div>
+    <div class="chip" data-key="examEyes" data-val="Trauma" data-mode="multi">Trauma</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Neck</div><div class="chip-group">
+    <div class="chip" data-key="examNeck" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examNeck" data-val="Tracheal Deviation" data-mode="multi">Tracheal Deviation</div>
+    <div class="chip" data-key="examNeck" data-val="JVD" data-mode="multi">JVD</div>
+    <div class="chip" data-key="examNeck" data-val="C-Collar Applied" data-mode="multi">C-Collar Applied</div>
+    <div class="chip" data-key="examNeck" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Chest</div><div class="chip-group">
+    <div class="chip" data-key="examChest" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examChest" data-val="Trauma" data-mode="multi">Trauma</div>
+    <div class="chip" data-key="examChest" data-val="Laceration" data-mode="multi">Laceration</div>
+    <div class="chip" data-key="examChest" data-val="Contusion" data-mode="multi">Contusion</div>
+    <div class="chip" data-key="examChest" data-val="Bleeding" data-mode="multi">Bleeding</div>
+    <div class="chip" data-key="examChest" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Lungs</div><div class="chip-group">
+    <div class="chip" data-key="examLungs" data-val="Clear BL" data-mode="multi">Clear BL</div>
+    <div class="chip" data-key="examLungs" data-val="Diminished" data-mode="multi">Diminished</div>
+    <div class="chip" data-key="examLungs" data-val="Wheezing" data-mode="multi">Wheezing</div>
+    <div class="chip" data-key="examLungs" data-val="Rales" data-mode="multi">Rales</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Abdomen</div><div class="chip-group">
+    <div class="chip" data-key="examAbdomen" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examAbdomen" data-val="Trauma" data-mode="multi">Trauma</div>
+    <div class="chip" data-key="examAbdomen" data-val="Tender" data-mode="multi">Tender</div>
+    <div class="chip" data-key="examAbdomen" data-val="Rigid" data-mode="multi">Rigid</div>
+    <div class="chip" data-key="examAbdomen" data-val="Distended" data-mode="multi">Distended</div>
+    <div class="chip" data-key="examAbdomen" data-val="Pulsating Mass" data-mode="multi">Pulsating Mass</div>
+    <div class="chip" data-key="examAbdomen" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Pelvis / Genitals</div><div class="chip-group">
+    <div class="chip" data-key="examPelvis" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examPelvis" data-val="Trauma" data-mode="multi">Trauma</div>
+    <div class="chip" data-key="examPelvis" data-val="Incontinence" data-mode="multi">Incontinence</div>
+    <div class="chip" data-key="examPelvis" data-val="Unstable" data-mode="multi">Unstable</div>
+    <div class="chip" data-key="examPelvis" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Back</div><div class="chip-group">
+    <div class="chip" data-key="examBack" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examBack" data-val="Trauma" data-mode="multi">Trauma</div>
+    <div class="chip" data-key="examBack" data-val="Laceration" data-mode="multi">Laceration</div>
+    <div class="chip" data-key="examBack" data-val="Contusion" data-mode="multi">Contusion</div>
+    <div class="chip" data-key="examBack" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Upper Extremities</div><div class="chip-group">
+    <div class="chip" data-key="examUpperExt" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examUpperExt" data-val="Trauma" data-mode="multi">Trauma</div>
+    <div class="chip" data-key="examUpperExt" data-val="Laceration" data-mode="multi">Laceration</div>
+    <div class="chip" data-key="examUpperExt" data-val="Contusion" data-mode="multi">Contusion</div>
+    <div class="chip" data-key="examUpperExt" data-val="Bleeding" data-mode="multi">Bleeding</div>
+    <div class="chip" data-key="examUpperExt" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Lower Extremities</div><div class="chip-group">
+    <div class="chip" data-key="examLowerExt" data-val="Normal" data-mode="multi">Normal</div>
+    <div class="chip" data-key="examLowerExt" data-val="Trauma" data-mode="multi">Trauma</div>
+    <div class="chip" data-key="examLowerExt" data-val="Laceration" data-mode="multi">Laceration</div>
+    <div class="chip" data-key="examLowerExt" data-val="Contusion" data-mode="multi">Contusion</div>
+    <div class="chip" data-key="examLowerExt" data-val="Bleeding" data-mode="multi">Bleeding</div>
+    <div class="chip" data-key="examLowerExt" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
+  </div></div>
+</section>
 
-  <!-- 06 ABCs -->
-  <div class="section-panel" id="section-abcs">
-    <div class="section-heading">ABCs</div>
-    <div class="section-desc">Airway, breathing, circulation assessment.</div>
-    <div class="field-group">
-      <div class="field-label">Airway</div>
-      <div class="chip-group">
-        <div class="chip" data-key="airway" data-val="Patent">Patent</div>
-        <div class="chip" data-key="airway" data-val="Obstructed">Obstructed</div>
-        <div class="chip" data-key="airway" data-val="Compromised">Compromised</div>
-        <div class="chip" data-key="airway" data-val="Not Breathing">Not Breathing</div>
-        <div class="chip" data-key="airway" data-val="Wheezing">Wheezing</div>
-        <div class="chip" data-key="airway" data-val="Snoring">Snoring</div>
-      </div>
-    </div>
-    <hr class="field-divider">
-    <div class="field-label" style="margin-bottom:12px;">Breathing</div>
-    <div class="field-group">
-      <div class="field-label">Present</div>
-      <div class="chip-group">
-        <div class="chip" data-key="breathingPresent" data-val="Normal">Normal</div>
-        <div class="chip" data-key="breathingPresent" data-val="Not Breathing">Not Breathing</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Regularity</div>
-      <div class="chip-group">
-        <div class="chip" data-key="breathingRegularity" data-val="Regular">Regular</div>
-        <div class="chip" data-key="breathingRegularity" data-val="Irregular">Irregular</div>
-        <div class="chip" data-key="breathingRegularity" data-val="Agonal">Agonal</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Rate</div>
-      <div class="chip-group">
-        <div class="chip" data-key="breathingRate" data-val="Normal Rate">Normal</div>
-        <div class="chip" data-key="breathingRate" data-val="Rapid">Rapid</div>
-        <div class="chip" data-key="breathingRate" data-val="Slow">Slow</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Depth</div>
-      <div class="chip-group">
-        <div class="chip" data-key="breathingDepth" data-val="Normal Depth">Normal</div>
-        <div class="chip" data-key="breathingDepth" data-val="Shallow">Shallow</div>
-        <div class="chip" data-key="breathingDepth" data-val="Deep">Deep</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Effort</div>
-      <div class="chip-group">
-        <div class="chip" data-key="breathingEffort" data-val="Normal Effort">Normal</div>
-        <div class="chip" data-key="breathingEffort" data-val="With Effort">With Effort</div>
-        <div class="chip" data-key="breathingEffort" data-val="Accessory Muscles">Accessory Muscles</div>
-      </div>
-    </div>
-    <hr class="field-divider">
-    <div class="field-label" style="margin-bottom:12px;">Circulation — Skin</div>
-    <div class="field-group">
-      <div class="field-label">Skin Color</div>
-      <div class="chip-group">
-        <div class="chip" data-key="skinColor" data-val="Pink">Pink</div>
-        <div class="chip" data-key="skinColor" data-val="Pale">Pale</div>
-        <div class="chip" data-key="skinColor" data-val="Cyanotic">Cyanotic</div>
-        <div class="chip" data-key="skinColor" data-val="Jaundice">Jaundice</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Skin Temp</div>
-      <div class="chip-group">
-        <div class="chip" data-key="skinTemp" data-val="Warm">Warm</div>
-        <div class="chip" data-key="skinTemp" data-val="Hot">Hot</div>
-        <div class="chip" data-key="skinTemp" data-val="Cold">Cold</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Skin Moisture</div>
-      <div class="chip-group">
-        <div class="chip" data-key="skinMoisture" data-val="Dry">Dry</div>
-        <div class="chip" data-key="skinMoisture" data-val="Diaphoretic">Diaphoretic</div>
-        <div class="chip" data-key="skinMoisture" data-val="Clammy">Clammy</div>
-        <div class="chip" data-key="skinMoisture" data-val="Wet">Wet</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Cap Refill</div>
-      <div class="chip-group">
-        <div class="chip" data-key="capRefill" data-val="Less than 2 seconds">&lt; 2 sec</div>
-        <div class="chip" data-key="capRefill" data-val="More than 2 seconds">&gt; 2 sec</div>
-      </div>
-    </div>
-    <hr class="field-divider">
-    <div class="field-label" style="margin-bottom:12px;">Circulation — Pulse</div>
-    <div class="field-group">
-      <div class="field-label">Location</div>
-      <div class="chip-group">
-        <div class="chip" data-key="pulseLocation" data-val="Radial">Radial</div>
-        <div class="chip" data-key="pulseLocation" data-val="Carotid">Carotid</div>
-        <div class="chip" data-key="pulseLocation" data-val="Femoral">Femoral</div>
-        <div class="chip" data-key="pulseLocation" data-val="Brachial">Brachial</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Rate</div>
-      <div class="chip-group">
-        <div class="chip" data-key="pulseRate" data-val="Normal Rate">Normal</div>
-        <div class="chip" data-key="pulseRate" data-val="Fast">Fast</div>
-        <div class="chip" data-key="pulseRate" data-val="Slow">Slow</div>
-        <div class="chip" data-key="pulseRate" data-val="Pulseless">Pulseless</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Rhythm</div>
-      <div class="chip-group">
-        <div class="chip" data-key="pulseRhythm" data-val="Regular">Regular</div>
-        <div class="chip" data-key="pulseRhythm" data-val="Irregular">Irregular</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Strength</div>
-      <div class="chip-group">
-        <div class="chip" data-key="pulseStrength" data-val="Normal Strength">Normal</div>
-        <div class="chip" data-key="pulseStrength" data-val="Strong">Strong</div>
-        <div class="chip" data-key="pulseStrength" data-val="Weak">Weak</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Bleeding</div>
-      <div class="chip-group">
-        <div class="chip" data-key="bleeding" data-val="None">None</div>
-        <div class="chip" data-key="bleeding" data-val="Controlled">Controlled</div>
-        <div class="chip" data-key="bleeding" data-val="Uncontrolled">Uncontrolled</div>
-        <div class="chip" data-key="bleeding" data-val="Minor">Minor</div>
-        <div class="chip" data-key="bleeding" data-val="Severe">Severe</div>
-      </div>
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Initial Impression</button>
-      <button class="btn-nav btn-next">Complaint &rarr;</button>
-    </div>
-  </div>
+<!-- 11 SCENARIO & PROCEDURES -->
+<section class="section-block" id="sec-scenario">
+  <div class="section-heading"><span class="section-num-badge">11</span> Scenario &amp; Procedures</div>
+  <div class="section-desc">Select the call scenario and all procedures performed.</div>
+  <div class="field-group"><div class="field-label">Scenario</div><div class="chip-group">
+    <div class="chip" data-key="scenario" data-val="BLS Call">BLS Call</div>
+    <div class="chip" data-key="scenario" data-val="ALS Call">ALS Call</div>
+    <div class="chip" data-key="scenario" data-val="CPR Call">CPR Call</div>
+    <div class="chip" data-key="scenario" data-val="Childbirth">Childbirth</div>
+    <div class="chip" data-key="scenario" data-val="Trauma">Trauma</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Procedures Performed</div><div class="chip-group">
+    <div class="chip" data-key="procedures" data-val="Assessment" data-mode="multi">Assessment</div>
+    <div class="chip" data-key="procedures" data-val="Oxygen Administration" data-mode="multi">O2 Administration</div>
+    <div class="chip" data-key="procedures" data-val="Airway Management" data-mode="multi">Airway Management</div>
+    <div class="chip" data-key="procedures" data-val="C-Spine Immobilization" data-mode="multi">C-Spine</div>
+    <div class="chip" data-key="procedures" data-val="Backboarding" data-mode="multi">Backboarding</div>
+    <div class="chip" data-key="procedures" data-val="Bleeding Control" data-mode="multi">Bleeding Control</div>
+    <div class="chip" data-key="procedures" data-val="Moving Patient" data-mode="multi">Moving PT</div>
+    <div class="chip" data-key="procedures" data-val="IV Access" data-mode="multi">IV Access</div>
+    <div class="chip" data-key="procedures" data-val="IO Access" data-mode="multi">IO Access</div>
+    <div class="chip" data-key="procedures" data-val="Medication Administration" data-mode="multi">Medication Admin</div>
+    <div class="chip" data-key="procedures" data-val="Defibrillation" data-mode="multi">Defibrillation</div>
+    <div class="chip" data-key="procedures" data-val="Pacing" data-mode="multi">Pacing</div>
+    <div class="chip" data-key="procedures" data-val="CPAP" data-mode="multi">CPAP</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Advanced Assessments</div><div class="chip-group">
+    <div class="chip" data-key="advancedAssessments" data-val="Stroke Assessment" data-mode="multi">Stroke Assessment</div>
+    <div class="chip" data-key="advancedAssessments" data-val="Sepsis Assessment" data-mode="multi">Sepsis Assessment</div>
+    <div class="chip" data-key="advancedAssessments" data-val="Orthostatic BP" data-mode="multi">Orthostatic BP</div>
+    <div class="chip" data-key="advancedAssessments" data-val="Trauma Assessment" data-mode="multi">Trauma Assessment</div>
+    <div class="chip" data-key="advancedAssessments" data-val="APGAR" data-mode="multi">APGAR</div>
+  </div></div>
+</section>
 
-  <!-- 07 COMPLAINT -->
-  <div class="section-panel" id="section-complaint">
-    <div class="section-heading">Complaint</div>
-    <div class="section-desc">Chief complaint, onset, duration, pain scale, and symptoms. Click symptoms once to affirm (green), again to deny (red), again to clear.</div>
-    <div class="field-group">
-      <div class="field-label">Chief Complaint</div>
-      <div class="chip-group">
-        <div class="chip" data-key="chiefComplaint" data-val="Weakness">Weakness</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Sick">Sick</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Shortness of Breath">SOB</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Chest Pain">Chest Pain</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Altered Mental Status">Altered</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Seizure">Seizure</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Abdominal Pain">Abdominal Pain</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Syncope/Near Syncope">Syncope/Near</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Diabetic Issue">Diabetic Issue</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Overdose/Poisoning">Overdose/Poisoning</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Nausea/Vomiting">Nausea/Vomiting</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Behavioral">Behavioral</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Headache">Headache</div>
-        <div class="chip" data-key="chiefComplaint" data-val="Acute Pain">Acute Pain</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Complaint Area</div>
-      <div class="chip-group">
-        <div class="chip" data-key="complaintArea" data-val="General">General</div>
-        <div class="chip" data-key="complaintArea" data-val="Head">Head</div>
-        <div class="chip" data-key="complaintArea" data-val="Face">Face</div>
-        <div class="chip" data-key="complaintArea" data-val="Neck">Neck</div>
-        <div class="chip" data-key="complaintArea" data-val="Chest">Chest</div>
-        <div class="chip" data-key="complaintArea" data-val="Back">Back</div>
-        <div class="chip" data-key="complaintArea" data-val="Abdomen">Abdomen</div>
-        <div class="chip" data-key="complaintArea" data-val="Pelvic">Pelvic</div>
-        <div class="chip" data-key="complaintArea" data-val="Upper Extremities">Upper Extremities</div>
-        <div class="chip" data-key="complaintArea" data-val="Lower Extremities">Lower Extremities</div>
-        <div class="chip" data-key="complaintArea" data-val="Multi-System">Multi-System</div>
-        <div class="chip" data-key="complaintArea" data-val="Neurological">Neurological</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Onset</div>
-      <div class="chip-group">
-        <div class="chip" data-key="onset" data-val="Acute">Acute</div>
-        <div class="chip" data-key="onset" data-val="Chronic">Chronic</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Duration</div>
-      <div class="input-row">
-        <div class="chip" data-key="duration" data-val="At time of call">At time of call</div>
-        <input class="text-input" type="text" placeholder="Or write-in (e.g. 2 hours)" data-state="duration" style="max-width:200px;">
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Pain Scale</div>
-      <div class="pain-scale">
-        <button class="pain-btn pain-0" data-val="0">0</button>
-        <button class="pain-btn pain-1" data-val="1">1</button>
-        <button class="pain-btn pain-2" data-val="2">2</button>
-        <button class="pain-btn pain-3" data-val="3">3</button>
-        <button class="pain-btn pain-4" data-val="4">4</button>
-        <button class="pain-btn pain-5" data-val="5">5</button>
-        <button class="pain-btn pain-6" data-val="6">6</button>
-        <button class="pain-btn pain-7" data-val="7">7</button>
-        <button class="pain-btn pain-8" data-val="8">8</button>
-        <button class="pain-btn pain-9" data-val="9">9</button>
-        <button class="pain-btn pain-10" data-val="10">10</button>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Symptoms <span>— click once = affirmed (green), twice = denied (red), third = clear</span></div>
-      <div class="chip-group">
-        <div class="chip" data-key="symptoms" data-val="Weakness" data-mode="symptom">Weakness</div>
-        <div class="chip" data-key="symptoms" data-val="Fatigue" data-mode="symptom">Fatigue</div>
-        <div class="chip" data-key="symptoms" data-val="Fever" data-mode="symptom">Fever</div>
-        <div class="chip" data-key="symptoms" data-val="Chills" data-mode="symptom">Chills</div>
-        <div class="chip" data-key="symptoms" data-val="Nausea" data-mode="symptom">Nausea</div>
-        <div class="chip" data-key="symptoms" data-val="Vomiting" data-mode="symptom">Vomiting</div>
-        <div class="chip" data-key="symptoms" data-val="Dizziness" data-mode="symptom">Dizziness</div>
-        <div class="chip" data-key="symptoms" data-val="Lightheadedness" data-mode="symptom">Lightheadedness</div>
-        <div class="chip" data-key="symptoms" data-val="Syncope" data-mode="symptom">Syncope</div>
-        <div class="chip" data-key="symptoms" data-val="Confusion" data-mode="symptom">Confusion</div>
-        <div class="chip" data-key="symptoms" data-val="Altered Mental Status" data-mode="symptom">Altered</div>
-        <div class="chip" data-key="symptoms" data-val="Anxiety" data-mode="symptom">Anxiety</div>
-        <div class="chip" data-key="symptoms" data-val="Dehydration" data-mode="symptom">Dehydration</div>
-        <div class="chip" data-key="symptoms" data-val="Diarrhea" data-mode="symptom">Diarrhea</div>
-        <div class="chip" data-key="symptoms" data-val="Loss of Appetite" data-mode="symptom">Loss of Appetite</div>
-        <div class="chip" data-key="symptoms" data-val="Trauma Related Pain" data-mode="symptom">Trauma Related Pain</div>
-        <div class="chip" data-key="symptoms" data-val="Chronic Pain" data-mode="symptom">Chronic Pain</div>
-        <div class="chip" data-key="symptoms" data-val="Seizures" data-mode="symptom">Seizures</div>
-        <div class="chip" data-key="symptoms" data-val="Rash" data-mode="symptom">Rash</div>
-        <div class="chip" data-key="symptoms" data-val="Shortness of Breath" data-mode="symptom">SOB</div>
-        <div class="chip" data-key="symptoms" data-val="Coughing" data-mode="symptom">Coughing</div>
-      </div>
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; ABCs</button>
-      <button class="btn-nav btn-next">History &rarr;</button>
-    </div>
-  </div>
+<!-- 12 VITALS -->
+<section class="section-block" id="sec-vitals">
+  <div class="section-heading"><span class="section-num-badge">12</span> Vitals</div>
+  <div class="section-desc">Each set pulls from the Times section above for easy time referencing.</div>
+  <div class="vitals-wrap" id="vitals-wrap"></div>
+  <button class="btn-add-vitals" id="btn-add-vitals">+ Add Vitals Set</button>
+</section>
 
-  <!-- 08 HISTORY -->
-  <div class="section-panel" id="section-history">
-    <div class="section-heading">History</div>
-    <div class="section-desc">Past medical history, medications by category, allergies, and last oral intake.</div>
-    <div class="field-group">
-      <div class="field-label">Medical History <span>(select all that apply)</span></div>
-      <div class="chip-group">
-        <div class="chip" data-key="pmh" data-val="Hypertension" data-mode="multi">Hypertension</div>
-        <div class="chip" data-key="pmh" data-val="Diabetes Type I" data-mode="multi">Diabetes I</div>
-        <div class="chip" data-key="pmh" data-val="Diabetes Type II" data-mode="multi">Diabetes II</div>
-        <div class="chip" data-key="pmh" data-val="Cardiac Disease" data-mode="multi">Cardiac Disease</div>
-        <div class="chip" data-key="pmh" data-val="History of Heart Attack" data-mode="multi">Heart Attack</div>
-        <div class="chip" data-key="pmh" data-val="CHF" data-mode="multi">CHF</div>
-        <div class="chip" data-key="pmh" data-val="COPD" data-mode="multi">COPD</div>
-        <div class="chip" data-key="pmh" data-val="Asthma" data-mode="multi">Asthma</div>
-        <div class="chip" data-key="pmh" data-val="Stroke" data-mode="multi">Stroke</div>
-        <div class="chip" data-key="pmh" data-val="Seizure Disorder" data-mode="multi">Seizure Disorder</div>
-        <div class="chip" data-key="pmh" data-val="Dementia/Alzheimers" data-mode="multi">Dementia/Alzheimers</div>
-        <div class="chip" data-key="pmh" data-val="Depression/Anxiety" data-mode="multi">Depression/Anxiety</div>
-        <div class="chip" data-key="pmh" data-val="Substance Abuse" data-mode="multi">Substance Abuse</div>
-        <div class="chip" data-key="pmh" data-val="Kidney Disease" data-mode="multi">Kidney Disease</div>
-        <div class="chip" data-key="pmh" data-val="Cancer" data-mode="multi">Cancer</div>
-        <div class="chip" data-key="pmh" data-val="Cancer in Remission" data-mode="multi">Cancer Remission</div>
-        <div class="chip" data-key="pmh" data-val="A-Fib" data-mode="multi">A-Fib</div>
-        <div class="chip" data-key="pmh" data-val="Immunocompromised" data-mode="multi">Immunocompromised</div>
-      </div>
-    </div>
-    <hr class="field-divider">
-    <div class="field-group">
-      <div class="field-label">General Medications</div>
-      <div class="chip-group">
-        <div class="chip" data-key="generalMeds" data-val="Blood Pressure Medication" data-mode="multi">Blood Pressure</div>
-        <div class="chip" data-key="generalMeds" data-val="Cholesterol Medication" data-mode="multi">Cholesterol</div>
-        <div class="chip" data-key="generalMeds" data-val="Diabetes Medication" data-mode="multi">Diabetes</div>
-        <div class="chip" data-key="generalMeds" data-val="Asthma Medication" data-mode="multi">Asthma</div>
-        <div class="chip" data-key="generalMeds" data-val="COPD Medication" data-mode="multi">COPD</div>
-        <div class="chip" data-key="generalMeds" data-val="Thyroid Medication" data-mode="multi">Thyroid</div>
-        <div class="chip" data-key="generalMeds" data-val="Anxiety Medication" data-mode="multi">Anxiety</div>
-        <div class="chip" data-key="generalMeds" data-val="Depression Medication" data-mode="multi">Depression</div>
-        <div class="chip" data-key="generalMeds" data-val="Sleep Medication" data-mode="multi">Sleep</div>
-        <div class="chip" data-key="generalMeds" data-val="Seizure Medication" data-mode="multi">Seizure</div>
-        <div class="chip" data-key="generalMeds" data-val="Pain Medication" data-mode="multi">Pain</div>
-        <div class="chip" data-key="generalMeds" data-val="Blood Thinner" data-mode="multi">Blood Thinner</div>
-        <div class="chip" data-key="generalMeds" data-val="Diuretic" data-mode="multi">Diuretic</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Cardiac Medications</div>
-      <div class="chip-group">
-        <div class="chip" data-key="cardiacMeds" data-val="Lisinopril" data-mode="multi">Lisinopril</div>
-        <div class="chip" data-key="cardiacMeds" data-val="Metoprolol" data-mode="multi">Metoprolol</div>
-        <div class="chip" data-key="cardiacMeds" data-val="Amlodipine" data-mode="multi">Amlodipine</div>
-        <div class="chip" data-key="cardiacMeds" data-val="Losartan" data-mode="multi">Losartan</div>
-        <div class="chip" data-key="cardiacMeds" data-val="Atenolol" data-mode="multi">Atenolol</div>
-        <div class="chip" data-key="cardiacMeds" data-val="Furosemide" data-mode="multi">Furosemide</div>
-        <div class="chip" data-key="cardiacMeds" data-val="Nitroglycerin" data-mode="multi">Nitro</div>
-        <div class="chip" data-key="cardiacMeds" data-val="Atorvastatin" data-mode="multi">Atorvastatin</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Diabetic Medications</div>
-      <div class="chip-group">
-        <div class="chip" data-key="diabeticMeds" data-val="Metformin" data-mode="multi">Metformin</div>
-        <div class="chip" data-key="diabeticMeds" data-val="Insulin" data-mode="multi">Insulin</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Respiratory Medications</div>
-      <div class="chip-group">
-        <div class="chip" data-key="respMeds" data-val="Albuterol" data-mode="multi">Albuterol</div>
-        <div class="chip" data-key="respMeds" data-val="Montelukast" data-mode="multi">Montelukast</div>
-        <div class="chip" data-key="respMeds" data-val="Tiotropium" data-mode="multi">Tiotropium</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Neuro Medications</div>
-      <div class="chip-group">
-        <div class="chip" data-key="neuroMeds" data-val="Levothyroxine" data-mode="multi">Levothyroxine</div>
-        <div class="chip" data-key="neuroMeds" data-val="Gabapentin" data-mode="multi">Gabapentin</div>
-        <div class="chip" data-key="neuroMeds" data-val="Sertraline" data-mode="multi">Sertraline</div>
-        <div class="chip" data-key="neuroMeds" data-val="Trazodone" data-mode="multi">Trazodone</div>
-        <div class="chip" data-key="neuroMeds" data-val="Lorazepam" data-mode="multi">Lorazepam</div>
-        <div class="chip" data-key="neuroMeds" data-val="Diazepam" data-mode="multi">Diazepam</div>
-        <div class="chip" data-key="neuroMeds" data-val="Phenytoin" data-mode="multi">Phenytoin</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Pain Medications</div>
-      <div class="chip-group">
-        <div class="chip" data-key="painMeds" data-val="Acetaminophen" data-mode="multi">Acetaminophen</div>
-        <div class="chip" data-key="painMeds" data-val="Ibuprofen" data-mode="multi">Ibuprofen</div>
-        <div class="chip" data-key="painMeds" data-val="Hydrocodone" data-mode="multi">Hydrocodone</div>
-        <div class="chip" data-key="painMeds" data-val="Oxycodone" data-mode="multi">Oxycodone</div>
-        <div class="chip" data-key="painMeds" data-val="Morphine" data-mode="multi">Morphine</div>
-        <div class="chip" data-key="painMeds" data-val="Fentanyl" data-mode="multi">Fentanyl</div>
-        <div class="chip" data-key="painMeds" data-val="Hydromorphone" data-mode="multi">Hydromorphone</div>
-      </div>
-    </div>
-    <hr class="field-divider">
-    <div class="field-group">
-      <div class="field-label">Allergies</div>
-      <div class="chip-group">
-        <div class="chip" data-key="allergies" data-val="NKDA" data-mode="multi">NKDA</div>
-        <div class="chip" data-key="allergies" data-val="Penicillin" data-mode="multi">Penicillin</div>
-        <div class="chip" data-key="allergies" data-val="Sulfa" data-mode="multi">Sulfa</div>
-        <div class="chip" data-key="allergies" data-val="Aspirin" data-mode="multi">Aspirin</div>
-        <div class="chip" data-key="allergies" data-val="NSAIDs" data-mode="multi">NSAIDs</div>
-        <div class="chip" data-key="allergies" data-val="Codeine" data-mode="multi">Codeine</div>
-        <div class="chip" data-key="allergies" data-val="Opioids" data-mode="multi">Opioids</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Last Oral Intake</div>
-      <input class="text-input" type="text" placeholder="e.g. 2 hours ago, breakfast" data-state="lastOralIntake">
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Complaint</button>
-      <button class="btn-nav btn-next">Head-to-Toe &rarr;</button>
-    </div>
-  </div>
+<!-- 13 MEDICATIONS GIVEN -->
+<section class="section-block" id="sec-meds">
+  <div class="section-heading"><span class="section-num-badge">13</span> Medications Given</div>
+  <div class="section-desc">Select a medication to add it. Each selected med gets a card for dose, route, effect, and time given.</div>
+  <div class="field-group"><div class="field-label">Common / BLS</div><div class="chip-group">
+    <div class="chip" data-key="medGive" data-val="Oxygen">O2</div>
+    <div class="chip" data-key="medGive" data-val="Fluids">Fluids</div>
+    <div class="chip" data-key="medGive" data-val="Aspirin">Aspirin</div>
+    <div class="chip" data-key="medGive" data-val="Nitroglycerin">Nitro</div>
+    <div class="chip" data-key="medGive" data-val="Albuterol">Albuterol</div>
+    <div class="chip" data-key="medGive" data-val="Narcan">Narcan</div>
+    <div class="chip" data-key="medGive" data-val="Zofran">Zofran</div>
+    <div class="chip" data-key="medGive" data-val="Epinephrine">Epi</div>
+    <div class="chip" data-key="medGive" data-val="Oral Glucose">Oral GC</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Cardiac</div><div class="chip-group">
+    <div class="chip" data-key="medGive" data-val="Adenosine">Adenosine</div>
+    <div class="chip" data-key="medGive" data-val="Amiodarone">Amiodarone</div>
+    <div class="chip" data-key="medGive" data-val="Atropine">Atropine</div>
+    <div class="chip" data-key="medGive" data-val="Epi 1:10,000">Epi 1:10,000</div>
+    <div class="chip" data-key="medGive" data-val="Dopamine">Dopamine</div>
+    <div class="chip" data-key="medGive" data-val="Norepinephrine">Norepi</div>
+    <div class="chip" data-key="medGive" data-val="Sodium Bicarb">Sodium Bicarb</div>
+    <div class="chip" data-key="medGive" data-val="Cardizem">Cardizem</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Pain / Sedation</div><div class="chip-group">
+    <div class="chip" data-key="medGive" data-val="Fentanyl">Fentanyl</div>
+    <div class="chip" data-key="medGive" data-val="Morphine">Morphine</div>
+    <div class="chip" data-key="medGive" data-val="Toradol">Toradol</div>
+    <div class="chip" data-key="medGive" data-val="Versed">Versed</div>
+    <div class="chip" data-key="medGive" data-val="Valium">Valium</div>
+    <div class="chip" data-key="medGive" data-val="Ketamine">Ketamine</div>
+    <div class="chip" data-key="medGive" data-val="Succinylcholine">Suc</div>
+    <div class="chip" data-key="medGive" data-val="Rocuronium">Roc</div>
+    <div class="chip" data-key="medGive" data-val="Etomidate">Etomidate</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Respiratory / Allergic</div><div class="chip-group">
+    <div class="chip" data-key="medGive" data-val="Solu-Medrol">Solu-Medrol</div>
+    <div class="chip" data-key="medGive" data-val="Ipratropium">Ipratropium</div>
+    <div class="chip" data-key="medGive" data-val="Duoneb">Duoneb</div>
+    <div class="chip" data-key="medGive" data-val="Magnesium Sulfate">Mag Sulfate</div>
+    <div class="chip" data-key="medGive" data-val="Terbutaline">Terbutaline</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Neuro / Toxin</div><div class="chip-group">
+    <div class="chip" data-key="medGive" data-val="D10">D10</div>
+    <div class="chip" data-key="medGive" data-val="D20">D20</div>
+    <div class="chip" data-key="medGive" data-val="D50">D50</div>
+    <div class="chip" data-key="medGive" data-val="Glucagon">Glucagon</div>
+    <div class="chip" data-key="medGive" data-val="Calcium Chloride">Calcium Chloride</div>
+  </div></div>
+  <div id="med-selected-list"></div>
+</section>
 
-  <!-- 09 HEAD TO TOE -->
-  <div class="section-panel" id="section-head-to-toe">
-    <div class="section-heading">Head-to-Toe Exam</div>
-    <div class="section-desc">Full body assessment by region. Select all findings that apply.</div>
-    <div class="field-group"><div class="field-label">General</div><div class="chip-group">
-      <div class="chip" data-key="examGeneral" data-val="Confused" data-mode="multi">Confused</div>
-      <div class="chip" data-key="examGeneral" data-val="Combative" data-mode="multi">Combative</div>
-      <div class="chip" data-key="examGeneral" data-val="Lethargic" data-mode="multi">Lethargic</div>
-      <div class="chip" data-key="examGeneral" data-val="Unresponsive" data-mode="multi">Unresponsive</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Skin</div><div class="chip-group">
-      <div class="chip" data-key="examSkin" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examSkin" data-val="Hot" data-mode="multi">Hot</div>
-      <div class="chip" data-key="examSkin" data-val="Cold" data-mode="multi">Cold</div>
-      <div class="chip" data-key="examSkin" data-val="Diaphoretic" data-mode="multi">Diaphoretic</div>
-      <div class="chip" data-key="examSkin" data-val="Pale" data-mode="multi">Pale</div>
-      <div class="chip" data-key="examSkin" data-val="Cyanotic" data-mode="multi">Cyanotic</div>
-      <div class="chip" data-key="examSkin" data-val="Jaundiced" data-mode="multi">Jaundiced</div>
-      <div class="chip" data-key="examSkin" data-val="Flushed" data-mode="multi">Flushed</div>
-      <div class="chip" data-key="examSkin" data-val="Rash" data-mode="multi">Rash</div>
-      <div class="chip" data-key="examSkin" data-val="Hives" data-mode="multi">Hives</div>
-      <div class="chip" data-key="examSkin" data-val="Tenting" data-mode="multi">Tenting</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Head</div><div class="chip-group">
-      <div class="chip" data-key="examHead" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examHead" data-val="Trauma" data-mode="multi">Trauma</div>
-      <div class="chip" data-key="examHead" data-val="Laceration" data-mode="multi">Laceration</div>
-      <div class="chip" data-key="examHead" data-val="Contusion" data-mode="multi">Contusion</div>
-      <div class="chip" data-key="examHead" data-val="Bleeding" data-mode="multi">Bleeding</div>
-      <div class="chip" data-key="examHead" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Eyes</div><div class="chip-group">
-      <div class="chip" data-key="examEyes" data-val="PERRL" data-mode="multi">PERRL</div>
-      <div class="chip" data-key="examEyes" data-val="Unequal Pupils" data-mode="multi">Unequal Pupils</div>
-      <div class="chip" data-key="examEyes" data-val="Non-Reactive" data-mode="multi">Non-Reactive</div>
-      <div class="chip" data-key="examEyes" data-val="Pinpoint" data-mode="multi">Pinpoint</div>
-      <div class="chip" data-key="examEyes" data-val="Dilated" data-mode="multi">Dilated</div>
-      <div class="chip" data-key="examEyes" data-val="Trauma" data-mode="multi">Trauma</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Neck</div><div class="chip-group">
-      <div class="chip" data-key="examNeck" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examNeck" data-val="Tracheal Deviation" data-mode="multi">Tracheal Deviation</div>
-      <div class="chip" data-key="examNeck" data-val="JVD" data-mode="multi">JVD</div>
-      <div class="chip" data-key="examNeck" data-val="C-Collar Applied" data-mode="multi">C-Collar Applied</div>
-      <div class="chip" data-key="examNeck" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Chest</div><div class="chip-group">
-      <div class="chip" data-key="examChest" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examChest" data-val="Trauma" data-mode="multi">Trauma</div>
-      <div class="chip" data-key="examChest" data-val="Laceration" data-mode="multi">Laceration</div>
-      <div class="chip" data-key="examChest" data-val="Contusion" data-mode="multi">Contusion</div>
-      <div class="chip" data-key="examChest" data-val="Bleeding" data-mode="multi">Bleeding</div>
-      <div class="chip" data-key="examChest" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Lungs</div><div class="chip-group">
-      <div class="chip" data-key="examLungs" data-val="Clear BL" data-mode="multi">Clear BL</div>
-      <div class="chip" data-key="examLungs" data-val="Diminished" data-mode="multi">Diminished</div>
-      <div class="chip" data-key="examLungs" data-val="Wheezing" data-mode="multi">Wheezing</div>
-      <div class="chip" data-key="examLungs" data-val="Rales" data-mode="multi">Rales</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Abdomen</div><div class="chip-group">
-      <div class="chip" data-key="examAbdomen" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examAbdomen" data-val="Trauma" data-mode="multi">Trauma</div>
-      <div class="chip" data-key="examAbdomen" data-val="Tender" data-mode="multi">Tender</div>
-      <div class="chip" data-key="examAbdomen" data-val="Rigid" data-mode="multi">Rigid</div>
-      <div class="chip" data-key="examAbdomen" data-val="Distended" data-mode="multi">Distended</div>
-      <div class="chip" data-key="examAbdomen" data-val="Pulsating Mass" data-mode="multi">Pulsating Mass</div>
-      <div class="chip" data-key="examAbdomen" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Pelvis / Genitals</div><div class="chip-group">
-      <div class="chip" data-key="examPelvis" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examPelvis" data-val="Trauma" data-mode="multi">Trauma</div>
-      <div class="chip" data-key="examPelvis" data-val="Incontinence" data-mode="multi">Incontinence</div>
-      <div class="chip" data-key="examPelvis" data-val="Unstable" data-mode="multi">Unstable</div>
-      <div class="chip" data-key="examPelvis" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Back</div><div class="chip-group">
-      <div class="chip" data-key="examBack" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examBack" data-val="Trauma" data-mode="multi">Trauma</div>
-      <div class="chip" data-key="examBack" data-val="Laceration" data-mode="multi">Laceration</div>
-      <div class="chip" data-key="examBack" data-val="Contusion" data-mode="multi">Contusion</div>
-      <div class="chip" data-key="examBack" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Upper Extremities</div><div class="chip-group">
-      <div class="chip" data-key="examUpperExt" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examUpperExt" data-val="Trauma" data-mode="multi">Trauma</div>
-      <div class="chip" data-key="examUpperExt" data-val="Laceration" data-mode="multi">Laceration</div>
-      <div class="chip" data-key="examUpperExt" data-val="Contusion" data-mode="multi">Contusion</div>
-      <div class="chip" data-key="examUpperExt" data-val="Bleeding" data-mode="multi">Bleeding</div>
-      <div class="chip" data-key="examUpperExt" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Lower Extremities</div><div class="chip-group">
-      <div class="chip" data-key="examLowerExt" data-val="Normal" data-mode="multi">Normal</div>
-      <div class="chip" data-key="examLowerExt" data-val="Trauma" data-mode="multi">Trauma</div>
-      <div class="chip" data-key="examLowerExt" data-val="Laceration" data-mode="multi">Laceration</div>
-      <div class="chip" data-key="examLowerExt" data-val="Contusion" data-mode="multi">Contusion</div>
-      <div class="chip" data-key="examLowerExt" data-val="Bleeding" data-mode="multi">Bleeding</div>
-      <div class="chip" data-key="examLowerExt" data-val="Acute Pain" data-mode="multi">Acute Pain</div>
-    </div></div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; History</button>
-      <button class="btn-nav btn-next">Scenario &amp; Procedures &rarr;</button>
-    </div>
-  </div>
+<!-- 14 REFUSAL -->
+<section class="section-block" id="sec-refusal">
+  <div class="section-heading"><span class="section-num-badge">14</span> Refusal</div>
+  <div class="section-desc">Document any patient refusal of care or transport.</div>
+  <div class="field-group"><div class="field-label">Capacity Assessed</div><div class="chip-group">
+    <div class="chip" data-key="capacityAssessed" data-val="Yes — patient assessed as competent">Yes — Competent</div>
+    <div class="chip" data-key="capacityAssessed" data-val="Yes — patient assessed as not competent">Yes — Not Competent</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Refused Items</div><div class="chip-group">
+    <div class="chip" data-key="refusedItems" data-val="All Care" data-mode="multi">All</div>
+    <div class="chip" data-key="refusedItems" data-val="Assessment" data-mode="multi">Assessment</div>
+    <div class="chip" data-key="refusedItems" data-val="Vitals" data-mode="multi">Vitals</div>
+    <div class="chip" data-key="refusedItems" data-val="Examination" data-mode="multi">Examination</div>
+    <div class="chip" data-key="refusedItems" data-val="Care" data-mode="multi">Care</div>
+    <div class="chip" data-key="refusedItems" data-val="Medication" data-mode="multi">Medication</div>
+    <div class="chip" data-key="refusedItems" data-val="Interventions" data-mode="multi">Interventions</div>
+    <div class="chip" data-key="refusedItems" data-val="Transportation" data-mode="multi">Transportation</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Refusal Type</div><div class="chip-group">
+    <div class="chip" data-key="refusalType" data-val="Against Medical Advice">Against Medical Advice</div>
+    <div class="chip" data-key="refusalType" data-val="Patient Terminated Interaction">PT Terminated Interaction</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Reason</div><div class="chip-group">
+    <div class="chip" data-key="refusalReason" data-val="Denies Medical Need at This Time">Denies Medical Need</div>
+    <div class="chip" data-key="refusalReason" data-val="Private Vehicle">POV</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Risks Explained to Patient</div><div class="chip-group">
+    <div class="chip" data-key="risksExplained" data-val="Yes">Yes</div>
+    <div class="chip" data-key="risksExplained" data-val="No">No</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Patient Advised to Call Back if Symptoms Worsen</div><div class="chip-group">
+    <div class="chip" data-key="advisedCallBack" data-val="Yes">Yes</div>
+    <div class="chip" data-key="advisedCallBack" data-val="No">No</div>
+  </div></div>
+</section>
 
-  <!-- 10 SCENARIO & PROCEDURES -->
-  <div class="section-panel" id="section-scenario-procedures">
-    <div class="section-heading">Scenario &amp; Procedures</div>
-    <div class="section-desc">Select the call scenario and procedures performed.</div>
-    <div class="field-group">
-      <div class="field-label">Scenario</div>
-      <div class="chip-group">
-        <div class="chip" data-key="scenario" data-val="BLS Call">BLS Call</div>
-        <div class="chip" data-key="scenario" data-val="ALS Call">ALS Call</div>
-        <div class="chip" data-key="scenario" data-val="CPR Call">CPR Call</div>
-        <div class="chip" data-key="scenario" data-val="Childbirth">Childbirth</div>
-        <div class="chip" data-key="scenario" data-val="Trauma">Trauma</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Procedures Performed <span>(select all that apply)</span></div>
-      <div class="chip-group">
-        <div class="chip" data-key="procedures" data-val="Assessment" data-mode="multi">Assessment</div>
-        <div class="chip" data-key="procedures" data-val="Oxygen Administration" data-mode="multi">O2 Administration</div>
-        <div class="chip" data-key="procedures" data-val="Airway Management" data-mode="multi">Airway Management</div>
-        <div class="chip" data-key="procedures" data-val="C-Spine Immobilization" data-mode="multi">C-Spine</div>
-        <div class="chip" data-key="procedures" data-val="Backboarding" data-mode="multi">Backboarding</div>
-        <div class="chip" data-key="procedures" data-val="Bleeding Control" data-mode="multi">Bleeding Control</div>
-        <div class="chip" data-key="procedures" data-val="Moving Patient" data-mode="multi">Moving PT</div>
-        <div class="chip" data-key="procedures" data-val="IV Access" data-mode="multi">IV Access</div>
-        <div class="chip" data-key="procedures" data-val="IO Access" data-mode="multi">IO Access</div>
-        <div class="chip" data-key="procedures" data-val="Medication Administration" data-mode="multi">Medication Admin</div>
-        <div class="chip" data-key="procedures" data-val="Defibrillation" data-mode="multi">Defibrillation</div>
-        <div class="chip" data-key="procedures" data-val="Pacing" data-mode="multi">Pacing</div>
-        <div class="chip" data-key="procedures" data-val="CPAP" data-mode="multi">CPAP</div>
-      </div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">Advanced Assessments <span>(select all that apply)</span></div>
-      <div class="chip-group">
-        <div class="chip" data-key="advancedAssessments" data-val="Stroke Assessment" data-mode="multi">Stroke Assessment</div>
-        <div class="chip" data-key="advancedAssessments" data-val="Sepsis Assessment" data-mode="multi">Sepsis Assessment</div>
-        <div class="chip" data-key="advancedAssessments" data-val="Orthostatic BP" data-mode="multi">Orthostatic BP</div>
-        <div class="chip" data-key="advancedAssessments" data-val="Trauma Assessment" data-mode="multi">Trauma Assessment</div>
-        <div class="chip" data-key="advancedAssessments" data-val="APGAR" data-mode="multi">APGAR</div>
-      </div>
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Head-to-Toe</button>
-      <button class="btn-nav btn-next">Vitals &rarr;</button>
-    </div>
+<!-- 15 TRANSPORTATION -->
+<section class="section-block" id="sec-transport">
+  <div class="section-heading"><span class="section-num-badge">15</span> Transportation</div>
+  <div class="section-desc">How the patient was moved, belongings, riders, and destination.</div>
+  <div class="field-group"><div class="field-label">Patient Move Method</div><div class="chip-group">
+    <div class="chip" data-key="ptMove" data-val="Ambulated">Ambulated</div>
+    <div class="chip" data-key="ptMove" data-val="With Assistance">With Assistance</div>
+    <div class="chip" data-key="ptMove" data-val="Lifted">Lifted</div>
+    <div class="chip" data-key="ptMove" data-val="Stair Chair">Stair Chair</div>
+    <div class="chip" data-key="ptMove" data-val="Backboard">Backboard</div>
+    <div class="chip" data-key="ptMove" data-val="Stretcher">Stretcher</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Patient Belongings</div><div class="chip-group">
+    <div class="chip" data-key="ptBelongings" data-val="Wallet/Purse" data-mode="multi">Wallet/Purse</div>
+    <div class="chip" data-key="ptBelongings" data-val="Phone" data-mode="multi">Phone</div>
+    <div class="chip" data-key="ptBelongings" data-val="Medications" data-mode="multi">Medications</div>
+    <div class="chip" data-key="ptBelongings" data-val="Medication List" data-mode="multi">Medication List</div>
+    <div class="chip" data-key="ptBelongings" data-val="Bag" data-mode="multi">Bag</div>
+    <div class="chip" data-key="ptBelongings" data-val="Facility Documentation" data-mode="multi">Facility Documentation</div>
+    <div class="chip" data-key="ptBelongings" data-val="DNR" data-mode="multi">DNR</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Additional Riders</div><div class="chip-group">
+    <div class="chip" data-key="additionalRiders" data-val="Fire Department" data-mode="multi">Fire Department</div>
+    <div class="chip" data-key="additionalRiders" data-val="EMS" data-mode="multi">EMS</div>
+    <div class="chip" data-key="additionalRiders" data-val="Supervisor" data-mode="multi">Supervisor</div>
+    <div class="chip" data-key="additionalRiders" data-val="Law Enforcement" data-mode="multi">Law Enforcement</div>
+    <div class="chip" data-key="additionalRiders" data-val="Nurse" data-mode="multi">Nurse</div>
+    <div class="chip" data-key="additionalRiders" data-val="Doctor" data-mode="multi">Doctor</div>
+    <div class="chip" data-key="additionalRiders" data-val="Mom" data-mode="multi">Mom</div>
+    <div class="chip" data-key="additionalRiders" data-val="Dad" data-mode="multi">Dad</div>
+    <div class="chip" data-key="additionalRiders" data-val="Legal Guardian" data-mode="multi">Legal Guardian</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Transport Unit</div><div class="chip-group">
+    <div class="chip" data-key="transportUnit" data-val="Ground Ambulance">Ground Ambulance</div>
+    <div class="chip" data-key="transportUnit" data-val="Air Ambulance">Air Ambulance</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Transition</div><div class="chip-group">
+    <div class="chip" data-key="transition" data-val="None">None</div>
+    <div class="chip" data-key="transition" data-val="Ground to Air">Ground to Air</div>
+    <div class="chip" data-key="transition" data-val="Air to Ground">Air to Ground</div>
+    <div class="chip" data-key="transition" data-val="Ground to Ground">Ground to Ground</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Destination</div><div class="chip-group">
+    <div class="chip" data-key="destinationType" data-val="Nearest Appropriate Facility">Nearest Appropriate</div>
+    <div class="chip" data-key="destinationType" data-val="STEMI Receiving Facility">STEMI Receiving</div>
+    <div class="chip" data-key="destinationType" data-val="Trauma Center">Trauma Center</div>
+    <div class="chip" data-key="destinationType" data-val="Stroke Center">Stroke Center</div>
+    <div class="chip" data-key="destinationType" data-val="Burn Center">Burn Center</div>
+    <div class="chip" data-key="destinationType" data-val="Pediatric Center">Pediatric Center</div>
+    <div class="chip" data-key="destinationType" data-val="OB Hospital">OB Hospital</div>
+  </div></div>
+  <div class="field-group">
+    <div class="field-label">Destination Name</div>
+    <input class="text-input" type="text" placeholder="Hospital/facility name" data-state="destinationName" style="width:280px;">
   </div>
+  <div class="field-group"><div class="field-label">Reason for Destination</div><div class="chip-group">
+    <div class="chip" data-key="destinationReason" data-val="Paramedic Choice">Paramedic Choice</div>
+    <div class="chip" data-key="destinationReason" data-val="Patient Choice">Patient Choice</div>
+    <div class="chip" data-key="destinationReason" data-val="Diverted from Other">Diverted from Other</div>
+  </div></div>
+</section>
 
-  <!-- 11 VITALS -->
-  <div class="section-panel" id="section-vitals">
-    <div class="section-heading">Vitals</div>
-    <div class="section-desc">Enter vitals sets. Click "Add Row" for additional sets.</div>
-    <div style="overflow-x:auto;">
-      <table class="vitals-table">
-        <thead>
-          <tr>
-            <th>Location</th><th>HR</th><th>BP</th><th>RR</th><th>SpO2</th><th>BGL</th><th>Temp</th><th>EtCO2</th><th>SpCO</th><th>Time</th>
-          </tr>
-        </thead>
-        <tbody id="vitals-tbody">
-          <tr>
-            <td><select><option>On Scene</option><option>In Ambulance</option><option>En Route</option></select></td>
-            <td><input type="text" placeholder="--" maxlength="6"></td>
-            <td><input type="text" placeholder="---/--" maxlength="7"></td>
-            <td><input type="text" placeholder="--" maxlength="4"></td>
-            <td><input type="text" placeholder="--" maxlength="4"></td>
-            <td><input type="text" placeholder="---" maxlength="5"></td>
-            <td><input type="text" placeholder="--" maxlength="5"></td>
-            <td><input type="text" placeholder="--" maxlength="5"></td>
-            <td><input type="text" placeholder="--" maxlength="5"></td>
-            <td><input type="time"></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <button class="btn-add-row" id="btn-add-vitals">+ Add Vitals Row</button>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Scenario &amp; Procedures</button>
-      <button class="btn-nav btn-next">Medications &rarr;</button>
-    </div>
-  </div>
-
-  <!-- 12 MEDICATIONS -->
-  <div class="section-panel" id="section-medications">
-    <div class="section-heading">Medications Given</div>
-    <div class="section-desc">Select medications administered during this call.</div>
-    <div class="field-group"><div class="field-label">Common / BLS</div><div class="chip-group">
-      <div class="chip" data-key="medsGiven" data-val="Oxygen" data-mode="multi">O2</div>
-      <div class="chip" data-key="medsGiven" data-val="Fluids" data-mode="multi">Fluids</div>
-      <div class="chip" data-key="medsGiven" data-val="Aspirin" data-mode="multi">Aspirin</div>
-      <div class="chip" data-key="medsGiven" data-val="Nitroglycerin" data-mode="multi">Nitro</div>
-      <div class="chip" data-key="medsGiven" data-val="Albuterol" data-mode="multi">Albuterol</div>
-      <div class="chip" data-key="medsGiven" data-val="Narcan" data-mode="multi">Narcan</div>
-      <div class="chip" data-key="medsGiven" data-val="Zofran" data-mode="multi">Zofran</div>
-      <div class="chip" data-key="medsGiven" data-val="Epinephrine" data-mode="multi">Epi</div>
-      <div class="chip" data-key="medsGiven" data-val="Oral Glucose" data-mode="multi">Oral GC</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Cardiac</div><div class="chip-group">
-      <div class="chip" data-key="medsGiven" data-val="Adenosine" data-mode="multi">Adenosine</div>
-      <div class="chip" data-key="medsGiven" data-val="Amiodarone" data-mode="multi">Amiodarone</div>
-      <div class="chip" data-key="medsGiven" data-val="Atropine" data-mode="multi">Atropine</div>
-      <div class="chip" data-key="medsGiven" data-val="Epi 1:10,000" data-mode="multi">Epi 1:10,000</div>
-      <div class="chip" data-key="medsGiven" data-val="Dopamine" data-mode="multi">Dopamine</div>
-      <div class="chip" data-key="medsGiven" data-val="Norepinephrine" data-mode="multi">Norepi</div>
-      <div class="chip" data-key="medsGiven" data-val="Sodium Bicarb" data-mode="multi">Sodium Bicarb</div>
-      <div class="chip" data-key="medsGiven" data-val="Cardizem" data-mode="multi">Cardizem</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Pain / Sedation</div><div class="chip-group">
-      <div class="chip" data-key="medsGiven" data-val="Fentanyl" data-mode="multi">Fentanyl</div>
-      <div class="chip" data-key="medsGiven" data-val="Morphine" data-mode="multi">Morphine</div>
-      <div class="chip" data-key="medsGiven" data-val="Toradol" data-mode="multi">Toradol</div>
-      <div class="chip" data-key="medsGiven" data-val="Versed" data-mode="multi">Versed</div>
-      <div class="chip" data-key="medsGiven" data-val="Valium" data-mode="multi">Valium</div>
-      <div class="chip" data-key="medsGiven" data-val="Ketamine" data-mode="multi">Ketamine</div>
-      <div class="chip" data-key="medsGiven" data-val="Succinylcholine" data-mode="multi">Suc</div>
-      <div class="chip" data-key="medsGiven" data-val="Rocuronium" data-mode="multi">Roc</div>
-      <div class="chip" data-key="medsGiven" data-val="Etomidate" data-mode="multi">Etomidate</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Respiratory / Allergic</div><div class="chip-group">
-      <div class="chip" data-key="medsGiven" data-val="Solu-Medrol" data-mode="multi">Solu-Medrol</div>
-      <div class="chip" data-key="medsGiven" data-val="Ipratropium" data-mode="multi">Ipratropium</div>
-      <div class="chip" data-key="medsGiven" data-val="Duoneb" data-mode="multi">Duoneb</div>
-      <div class="chip" data-key="medsGiven" data-val="Magnesium Sulfate" data-mode="multi">Mag Sulfate</div>
-      <div class="chip" data-key="medsGiven" data-val="Terbutaline" data-mode="multi">Terbutaline</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Neuro / Toxin</div><div class="chip-group">
-      <div class="chip" data-key="medsGiven" data-val="D10" data-mode="multi">D10</div>
-      <div class="chip" data-key="medsGiven" data-val="D20" data-mode="multi">D20</div>
-      <div class="chip" data-key="medsGiven" data-val="D50" data-mode="multi">D50</div>
-      <div class="chip" data-key="medsGiven" data-val="Glucagon" data-mode="multi">Glucagon</div>
-      <div class="chip" data-key="medsGiven" data-val="Calcium Chloride" data-mode="multi">Calcium Chloride</div>
-    </div></div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Vitals</button>
-      <button class="btn-nav btn-next">Refusal &rarr;</button>
-    </div>
-  </div>
-
-  <!-- 13 REFUSAL -->
-  <div class="section-panel" id="section-refusal">
-    <div class="section-heading">Refusal</div>
-    <div class="section-desc">Document any patient refusal of care or transport.</div>
-    <div class="field-group"><div class="field-label">Capacity Assessed</div><div class="chip-group">
-      <div class="chip" data-key="capacityAssessed" data-val="Yes — Patient Competent">Yes — Competent</div>
-      <div class="chip" data-key="capacityAssessed" data-val="Yes — Patient Not Competent">Yes — Not Competent</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Refused Items <span>(select all that apply)</span></div><div class="chip-group">
-      <div class="chip" data-key="refusedItems" data-val="All Care" data-mode="multi">All</div>
-      <div class="chip" data-key="refusedItems" data-val="Assessment" data-mode="multi">Assessment</div>
-      <div class="chip" data-key="refusedItems" data-val="Vitals" data-mode="multi">Vitals</div>
-      <div class="chip" data-key="refusedItems" data-val="Examination" data-mode="multi">Examination</div>
-      <div class="chip" data-key="refusedItems" data-val="Care" data-mode="multi">Care</div>
-      <div class="chip" data-key="refusedItems" data-val="Medication" data-mode="multi">Medication</div>
-      <div class="chip" data-key="refusedItems" data-val="Interventions" data-mode="multi">Interventions</div>
-      <div class="chip" data-key="refusedItems" data-val="Transportation" data-mode="multi">Transportation</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Refusal Type</div><div class="chip-group">
-      <div class="chip" data-key="refusalType" data-val="Against Medical Advice">Against Medical Advice</div>
-      <div class="chip" data-key="refusalType" data-val="Patient Terminated Interaction">PT Terminated Interaction</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Reason</div><div class="chip-group">
-      <div class="chip" data-key="refusalReason" data-val="Denies Medical Need at This Time">Denies Medical Need</div>
-      <div class="chip" data-key="refusalReason" data-val="Private Vehicle">POV</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Risks Explained to Patient</div><div class="chip-group">
-      <div class="chip" data-key="risksExplained" data-val="Yes">Yes</div>
-      <div class="chip" data-key="risksExplained" data-val="No">No</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Patient Advised to Call Back if Symptoms Worsen</div><div class="chip-group">
-      <div class="chip" data-key="advisedCallBack" data-val="Yes">Yes</div>
-      <div class="chip" data-key="advisedCallBack" data-val="No">No</div>
-    </div></div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Medications</button>
-      <button class="btn-nav btn-next">Transportation &rarr;</button>
-    </div>
-  </div>
-
-  <!-- 14 TRANSPORTATION -->
-  <div class="section-panel" id="section-transportation">
-    <div class="section-heading">Transportation</div>
-    <div class="section-desc">How the patient was moved, belongings, riders, and destination.</div>
-    <div class="field-group">
-      <div class="field-label">Time of Departure from Scene</div>
-      <input class="time-input" type="time" data-state="timeDeparture">
-    </div>
-    <div class="field-group"><div class="field-label">Patient Move Method</div><div class="chip-group">
-      <div class="chip" data-key="ptMove" data-val="Ambulated">Ambulated</div>
-      <div class="chip" data-key="ptMove" data-val="With Assistance">With Assistance</div>
-      <div class="chip" data-key="ptMove" data-val="Lifted">Lifted</div>
-      <div class="chip" data-key="ptMove" data-val="Stair Chair">Stair Chair</div>
-      <div class="chip" data-key="ptMove" data-val="Backboard">Backboard</div>
-      <div class="chip" data-key="ptMove" data-val="Stretcher">Stretcher</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Patient Belongings <span>(select all that apply)</span></div><div class="chip-group">
-      <div class="chip" data-key="ptBelongings" data-val="Wallet/Purse" data-mode="multi">Wallet/Purse</div>
-      <div class="chip" data-key="ptBelongings" data-val="Phone" data-mode="multi">Phone</div>
-      <div class="chip" data-key="ptBelongings" data-val="Medications" data-mode="multi">Medications</div>
-      <div class="chip" data-key="ptBelongings" data-val="Medication List" data-mode="multi">Medication List</div>
-      <div class="chip" data-key="ptBelongings" data-val="Bag" data-mode="multi">Bag</div>
-      <div class="chip" data-key="ptBelongings" data-val="Facility Documentation" data-mode="multi">Facility Documentation</div>
-      <div class="chip" data-key="ptBelongings" data-val="DNR" data-mode="multi">DNR</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Additional Riders <span>(select all that apply)</span></div><div class="chip-group">
-      <div class="chip" data-key="additionalRiders" data-val="Fire Department" data-mode="multi">Fire Department</div>
-      <div class="chip" data-key="additionalRiders" data-val="EMS" data-mode="multi">EMS</div>
-      <div class="chip" data-key="additionalRiders" data-val="Supervisor" data-mode="multi">Supervisor</div>
-      <div class="chip" data-key="additionalRiders" data-val="Law Enforcement" data-mode="multi">Law Enforcement</div>
-      <div class="chip" data-key="additionalRiders" data-val="Nurse" data-mode="multi">Nurse</div>
-      <div class="chip" data-key="additionalRiders" data-val="Doctor" data-mode="multi">Doctor</div>
-      <div class="chip" data-key="additionalRiders" data-val="Mom" data-mode="multi">Mom</div>
-      <div class="chip" data-key="additionalRiders" data-val="Dad" data-mode="multi">Dad</div>
-      <div class="chip" data-key="additionalRiders" data-val="Legal Guardian" data-mode="multi">Legal Guardian</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Transport Unit</div><div class="chip-group">
-      <div class="chip" data-key="transportUnit" data-val="Ground Ambulance">Ground Ambulance</div>
-      <div class="chip" data-key="transportUnit" data-val="Air Ambulance">Air Ambulance</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Transition</div><div class="chip-group">
-      <div class="chip" data-key="transition" data-val="None">None</div>
-      <div class="chip" data-key="transition" data-val="Ground to Air">Ground to Air</div>
-      <div class="chip" data-key="transition" data-val="Air to Ground">Air to Ground</div>
-      <div class="chip" data-key="transition" data-val="Ground to Ground">Ground to Ground</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Destination Type</div><div class="chip-group">
-      <div class="chip" data-key="destinationType" data-val="Nearest Appropriate Facility">Nearest Appropriate Facility</div>
-      <div class="chip" data-key="destinationType" data-val="STEMI Receiving Facility">STEMI Receiving</div>
-      <div class="chip" data-key="destinationType" data-val="Trauma Center">Trauma Center</div>
-      <div class="chip" data-key="destinationType" data-val="Stroke Center">Stroke Center</div>
-      <div class="chip" data-key="destinationType" data-val="Burn Center">Burn Center</div>
-      <div class="chip" data-key="destinationType" data-val="Pediatric Center">Pediatric Center</div>
-      <div class="chip" data-key="destinationType" data-val="OB Hospital">OB Hospital</div>
-    </div></div>
-    <div class="field-group">
-      <div class="field-label">Destination Name</div>
-      <input class="text-input" type="text" placeholder="Hospital/facility name" data-state="destinationName">
-    </div>
-    <div class="field-group"><div class="field-label">Reason for Destination</div><div class="chip-group">
-      <div class="chip" data-key="destinationReason" data-val="Paramedic Choice">Paramedic Choice</div>
-      <div class="chip" data-key="destinationReason" data-val="Patient Choice">Patient Choice</div>
-      <div class="chip" data-key="destinationReason" data-val="Diverted from Other">Diverted from Other</div>
-    </div></div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Refusal</button>
-      <button class="btn-nav btn-next">Transfer of Care &rarr;</button>
-    </div>
-  </div>
-
-  <!-- 15 TRANSFER OF CARE -->
-  <div class="section-panel" id="section-transfer">
-    <div class="section-heading">Transfer of Care</div>
-    <div class="section-desc">Document how and to whom care was transferred.</div>
-    <div class="field-group">
-      <div class="field-label">Time of Arrival at Facility</div>
-      <input class="time-input" type="time" data-state="timeArrivalFacility">
-    </div>
-    <div class="field-group"><div class="field-label">Transfer Type</div><div class="chip-group">
-      <div class="chip" data-key="transferType" data-val="Verbal Radio">Verbal Radio</div>
-      <div class="chip" data-key="transferType" data-val="Verbal Face to Face">Verbal Face to Face</div>
-      <div class="chip" data-key="transferType" data-val="Documentation">Documentation</div>
-      <div class="chip" data-key="transferType" data-val="Cloud/Upload">Cloud/Upload</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Receiving Facility Response</div><div class="chip-group">
-      <div class="chip" data-key="receivingFacility" data-val="Accepted">Accepted</div>
-      <div class="chip" data-key="receivingFacility" data-val="Denied">Denied</div>
-    </div></div>
-    <div class="field-group"><div class="field-label">Receiving Person</div><div class="chip-group">
-      <div class="chip" data-key="receivingPerson" data-val="Doctor">Doctor</div>
-      <div class="chip" data-key="receivingPerson" data-val="Nurse">Nurse</div>
-      <div class="chip" data-key="receivingPerson" data-val="Other">Other</div>
-    </div></div>
-    <div class="field-group">
-      <div class="field-label">Time Back in Service</div>
-      <input class="time-input" type="time" data-state="timeBackInService">
-    </div>
-    <div class="section-nav">
-      <button class="btn-nav btn-prev">&larr; Transportation</button>
-      <span></span>
-    </div>
-  </div>
+<!-- 16 TRANSFER OF CARE -->
+<section class="section-block" id="sec-transfer">
+  <div class="section-heading"><span class="section-num-badge">16</span> Transfer of Care</div>
+  <div class="section-desc">How and to whom care was transferred at the receiving facility.</div>
+  <div class="field-group"><div class="field-label">Transfer Type</div><div class="chip-group">
+    <div class="chip" data-key="transferType" data-val="Verbal Radio">Verbal Radio</div>
+    <div class="chip" data-key="transferType" data-val="Verbal Face to Face">Verbal Face to Face</div>
+    <div class="chip" data-key="transferType" data-val="Documentation">Documentation</div>
+    <div class="chip" data-key="transferType" data-val="Cloud/Upload">Cloud/Upload</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Receiving Facility</div><div class="chip-group">
+    <div class="chip" data-key="receivingFacility" data-val="Accepted">Accepted</div>
+    <div class="chip" data-key="receivingFacility" data-val="Denied">Denied</div>
+  </div></div>
+  <div class="field-group"><div class="field-label">Receiving Person</div><div class="chip-group">
+    <div class="chip" data-key="receivingPerson" data-val="Doctor">Doctor</div>
+    <div class="chip" data-key="receivingPerson" data-val="Nurse">Nurse</div>
+    <div class="chip" data-key="receivingPerson" data-val="Other">Other</div>
+  </div></div>
+  <div style="padding-bottom:40px;"></div>
+</section>
 
 </main>
 
 <!-- PREVIEW PANEL -->
 <aside id="preview-panel">
   <div class="preview-header">
-    <span class="preview-title">Narrative Preview</span>
+    <div class="preview-title">Narrative Preview</div>
+    <div class="preview-meta" id="preview-meta"></div>
   </div>
-  <div id="preview-text" style="color:var(--text3);font-family:var(--font);font-size:13px;font-style:italic;">
-    Start filling out sections to see your narrative here...
+  <div id="preview-text" style="color:var(--text3);font-style:italic;font-size:12px;">
+    Start filling out sections — your narrative will appear here.
   </div>
   <div class="preview-footer">
     <button class="btn-copy" id="btn-copy">Copy Narrative</button>
@@ -1189,7 +1071,6 @@
 </aside>
 
 </div>
-
 <script src="js/app.js"></script>
 </body>
 </html>
